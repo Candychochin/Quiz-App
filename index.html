@@ -1,150 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz App</title>
 
-    <link rel="stylesheet" href="./style.css">
-   
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
 
-    </head>
-    
-    <body>
-        
-        
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li id="nav-start-btn">Start Quiz</li>
+          <li id="nav-create-btn">Make Question</li>
+          <li id="nav-check-btn">Edit Question</li>
+        </ul>
+      </nav>
+    </header>
+    <div class="page-wrapper">
+      <main>
+        <section class="start-container active">
+          <h1>Welcome To Quiz App</h1>
+          <p>Click The Start Quiz to start the test.</p>
+          <button id="start-btn">Start Quiz</button>
+          <button id="create-btn">Make Question Yourself</button>
+        </section>
 
-        <div class="page-warper">
+        <section class="create-container hidden">
+          <div class="create-question-container">
+            <label for="create-question">Enter A Question</label>
+            <input
+              type="text"
+              id="create-question"
+              placeholder="Enter A Question"
+            />
+          </div>
+          <p>
+            Enter An Answer And <br />
+            Check The Correct Answer
+          </p>
+          <div class="create-answer-container">
+            <div class="answer-pairs">
+              <label for="answer1">1.</label>
+              <input type="text" id="answer1" placeholder="Enter An Answer" />
+              <input type="radio" name="correct" value="1" id="correct1" />
+              <label for="correct1">correct</label>
+            </div>
+            <div class="answer-pairs">
+              <label for="answer2">2.</label>
+              <input type="text" id="answer2" placeholder="Enter An Answer" />
+              <input type="radio" name="correct" value="1" id="correct2" />
+              <label for="correct2">correct</label>
+            </div>
+            <div class="answer-pairs">
+              <label for="answer3">3.</label>
+              <input type="text" id="answer3" placeholder="Enter An Answer" />
+              <input type="radio" name="correct" value="1" id="correct3" />
+              <label for="correct3">correct</label>
+            </div>
+            <div class="answer-pairs">
+              <label for="answer4">4.</label>
+              <input type="text" id="answer4" placeholder="Enter An Answer" />
+              <input type="radio" name="correct" value="1" id="correct4" />
+              <label for="correct4">correct</label>
+            </div>
+          </div>
 
-     
-            <header>
+          <button id="submit-btn">Submit The Question</button>
+        </section>
 
-                <nav>
-                    <button id="nav-start-btn">Start Quiz</button>
-                    <button id="nav-create-btn">Make Question</button>
-                    <button id="nav-check-btn">Your Questions</button>
-                </nav>
-            </header>
+        <section class="question-look-container hidden">
+          <h2>Your Questions</h2>
 
-            <main>
+          <div class="border-container">
+            <div class="question-container">
+              <h1>What Is DNA?</h1>
 
+              <div>
+                <div class="answers">
+                  <input type="radio" name="answer" id="1" />
+                  <label for="1">1.</label>
 
+                  <label for="1">Answer Option One</label>
+                </div>
 
-                <section class="start-container active">
-                    
-                        <h1>Welcome To Quiz App</h1>
-                        <p>Click The Start Quiz to start the test.</p>
-                        <button id="start-btn">Start Quiz</button>
-                        <button id="create-btn">Make Question Yourself</button>
-                </section>
+                <div class="answers">
+                  <input type="radio" name="answer" id="2" />
+                  <label for="2">2.</label>
 
-                <section class="create-container hidden">
+                  <label for="2">Answer Option Two</label>
+                </div>
 
-                    <div class="create-question-container">
-                        <label for="create-question">Enter A Question</label>
-                        <input type="text" id="create-question" placeholder="Enter A Question">
-                    </div>
-                    <p>Enter An Answer And <br> Check The Correct Answer</p>
-                    <div class="create-answer-container">
-                        <div class="answer-pairs">
-                            <label for="answer1">1.</label>
-                            <input type="text" id="answer1" placeholder="Enter An Answer">
-                            <input type="checkbox" id="correct1" >
-                            <label for="correct1">Correct Answer</label>
-                        </div>
-                        <div class="answer-pairs">
-                            <label for="answer2">2.</label>
-                            <input type="text" id="answer2" placeholder="Enter An Answer">
-                            <input type="checkbox" id="correct2" >
-                            <label for="correct2">Correct Answer</label>
-                        </div>
-                        <div class="answer-pairs">
-                            <label for="answer3">3.</label>
-                            <input type="text" id="answer3" placeholder="Enter An Answer">
-                            <input type="checkbox"  id="correct3">
-                            <label for="correct3">Correct Answer</label>
-                        </div>
-                        <div class="answer-pairs">
-                            <label for="answer4">4.</label>
-                            <input type="text" id="answer4" placeholder="Enter An Answer">
-                            <input type="checkbox" id="correct4" >
-                            <label for="correct4">Correct Answer</label>
-                        </div>
-                    
-                    </div>
+                <div class="answers">
+                  <input type="radio" name="answer" id="3" />
+                  <label for="3">3.</label>
 
+                  <label for="3">Answer Option Three</label>
+                </div>
 
-                        <button id="submit-btn">Submit The Question</button>
-                </section>
+                <div class="answers">
+                  <input type="radio" name="answer" id="4" />
+                  <label for="4">4.</label>
+                  <label for="4">Answer Option Four</label>
+                </div>
+              </div>
+              <div class="question-actions-container">
+                <button id="edit-btn">Edit</button>
+                <button id="delete-btn">Delete</button>
+              </div>
+            </div>
+          </div>
+        </section>
 
+        <section class="quiz-container hidden">
+          <h2>1 / 10</h2>
+          <h2 id="question">Question Here</h2>
+          <div class="answers-container">
+            <div class="answers">
+              <input type="radio" name="answer" id="1" />
+              <label for="1">1.</label>
 
+              <label for="1">Answer Option One</label>
+            </div>
+            <div class="answers">
+              <input type="radio" name="answer" id="2" />
+              <label for="2">2.</label>
 
-                <section class="quiz-container hidden">
-                    <h2>1 / 10</h2>
-                    <h2 id="question">Question Here</h2>
-                    <div class="answers-container">
+              <label for="2">Answer Option Two</label>
+            </div>
 
-                        <div class="answers">
-                            <input type="radio" name="answer" id="1">
-                            <label for="1">1.</label>
-                            
-                            <label for="1">Answer Option One</label>
-                        </div>
-                         <div class="answers">
-                            <input type="radio" name="answer" id="2">
-                            <label for="2">2.</label>
-                            
-                            <label for="2">Answer Option Two</label>
-                        </div>
+            <div class="answers">
+              <input type="radio" name="answer" id="3" />
+              <label for="3">3.</label>
 
-                        <div class="answers">
-                            <input type="radio" name="answer" id="3">
-                            <label for="3">3.</label>
-                            
-                            <label for="3">Answer Option Three</label>
-                        </div>
-                        <div class="answers">
-                            <input type="radio" name="answer" id="4">
-                            <label for="4">4.</label>
-                            
-                            <label for="4">Answer Option Four</label>
-                        </div>
+              <label for="3">Answer Option Three</label>
+            </div>
+            <div class="answers">
+              <input type="radio" name="answer" id="4" />
+              <label for="4">4.</label>
 
-                        <button id="select-btn">
-                            Select The Answer
-                        </button>
-                    </div>
+              <label for="4">Answer Option Four</label>
+            </div>
 
-                </section>
+            <button id="select-btn">Select The Answer</button>
+          </div>
+        </section>
 
-                <section class="result-container hidden">
-                    <div class="result-content">
-                        <h2>Congrats Letter</h2>
-                        <h3>Scores</h3>
-                        <p>Advice</p>
-                    </div>
-                    <button id="restart-btn">Restart The Test</button>
-                </section>
+        <section class="result-container hidden">
+          <div class="result-content">
+            <h2>Congrats Letter</h2>
+            <h3>Scores</h3>
+            <p>Advice</p>
+          </div>
+          <button id="restart-btn">Restart The Test</button>
+        </section>
+      </main>
+    </div>
 
-
-            </main>
-            
-
-
-        </div>
-        
-
-
-
-
-
-
-
-
-
-
-
-        <script src="./index.js"></script>
-    </body>
-
+    <script src="./js/main.js"></script>
+  </body>
 </html>
