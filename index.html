@@ -13,12 +13,25 @@
       <nav>
         <ul>
           <li id="nav-start-btn">Start Quiz</li>
-          <li id="nav-create-btn">Make Question</li>
-          <li id="nav-check-btn">Edit Question</li>
+          <li id="nav-create-btn">Make Questions</li>
+          <li id="nav-check-btn">Check Questions</li>
         </ul>
       </nav>
     </header>
+
     <div class="page-wrapper">
+      <div class="delete-popup-container hidden">
+        <section class="delete-popup">
+          <h2>
+            Are You Sure? <br />
+            Want To <span>Delete</span> This Question?
+          </h2>
+
+          <button id="confirmNo">No</button>
+          <button id="confirmDel">Yes</button>
+        </section>
+      </div>
+
       <main>
         <section class="start-container active">
           <h1>Welcome To Quiz App</h1>
@@ -28,87 +41,307 @@
         </section>
 
         <section class="create-container hidden">
+
           <div class="create-question-container">
             <label for="create-question">Enter A Question</label>
             <input
               type="text"
               id="create-question"
               placeholder="Enter A Question"
+              required
             />
           </div>
           <p>
             Enter An Answer And <br />
             Check The Correct Answer
           </p>
-          <div class="create-answer-container">
+          <div class="create-answers-container">
             <div class="answer-pairs">
               <label for="answer1">1.</label>
-              <input type="text" id="answer1" placeholder="Enter An Answer" />
-              <input type="radio" name="correct" value="1" id="correct1" />
+              <input
+                type="text"
+                id="answer1"
+                placeholder="Enter An Answer"
+                required
+              />
+              <input type="radio" name="correct" value="true" id="correct1" />
               <label for="correct1">correct</label>
             </div>
             <div class="answer-pairs">
               <label for="answer2">2.</label>
-              <input type="text" id="answer2" placeholder="Enter An Answer" />
-              <input type="radio" name="correct" value="1" id="correct2" />
+              <input
+                type="text"
+                id="answer2"
+                placeholder="Enter An Answer"
+                required
+              />
+              <input type="radio" name="correct" value="true" id="correct2" />
               <label for="correct2">correct</label>
             </div>
             <div class="answer-pairs">
               <label for="answer3">3.</label>
-              <input type="text" id="answer3" placeholder="Enter An Answer" />
-              <input type="radio" name="correct" value="1" id="correct3" />
+              <input
+                type="text"
+                id="answer3"
+                placeholder="Enter An Answer"
+                required
+              />
+              <input type="radio" name="correct" value="true" id="correct3" />
               <label for="correct3">correct</label>
             </div>
             <div class="answer-pairs">
               <label for="answer4">4.</label>
-              <input type="text" id="answer4" placeholder="Enter An Answer" />
-              <input type="radio" name="correct" value="1" id="correct4" />
+              <input
+                type="text"
+                id="answer4"
+                placeholder="Enter An Answer"
+                required
+              />
+              <input type="radio" name="correct" value="true" id="correct4" />
               <label for="correct4">correct</label>
             </div>
           </div>
 
-          <button id="submit-btn">Submit The Question</button>
+          <button id="submit-btn">Add This Question</button>
         </section>
 
         <section class="question-look-container hidden">
           <h2>Your Questions</h2>
 
           <div class="border-container">
+
+
+
             <div class="question-container">
               <h1>What Is DNA?</h1>
 
               <div>
                 <div class="answers">
-                  <input type="radio" name="answer" id="1" />
-                  <label for="1">1.</label>
+                  <input type="radio" name="answer" id="look-one" />
+                  <label for="look-one">1.</label>
 
-                  <label for="1">Answer Option One</label>
+                  <label for="look-one">Answer Option One</label>
                 </div>
 
                 <div class="answers">
-                  <input type="radio" name="answer" id="2" />
-                  <label for="2">2.</label>
+                  <input type="radio" name="answer" id="look-two" />
+                  <label for="look-two">2.</label>
 
-                  <label for="2">Answer Option Two</label>
+                  <label for="look-two">Answer Option Two</label>
                 </div>
 
                 <div class="answers">
-                  <input type="radio" name="answer" id="3" />
-                  <label for="3">3.</label>
+                  <input type="radio" name="answer" id="look-three" />
+                  <label for="look-three">3.</label>
 
-                  <label for="3">Answer Option Three</label>
+                  <label for="look-three">Answer Option Three</label>
                 </div>
 
                 <div class="answers">
-                  <input type="radio" name="answer" id="4" />
-                  <label for="4">4.</label>
-                  <label for="4">Answer Option Four</label>
+                  <input type="radio" name="answer" id="look-four" />
+                  <label for="look-four">4.</label>
+                  <label for="look-four">Answer Option Four</label>
                 </div>
               </div>
               <div class="question-actions-container">
                 <button id="edit-btn">Edit</button>
                 <button id="delete-btn">Delete</button>
               </div>
+            </div>
+            <div class="question-container">
+              <h1>What Is DNA?</h1>
+
+              <div>
+                <div class="answers">
+                  <input type="radio" name="answer" id="look-one" />
+                  <label for="look-one">1.</label>
+
+                  <label for="look-one">Answer Option One</label>
+                </div>
+
+                <div class="answers">
+                  <input type="radio" name="answer" id="look-two" />
+                  <label for="look-two">2.</label>
+
+                  <label for="look-two">Answer Option Two</label>
+                </div>
+
+                <div class="answers">
+                  <input type="radio" name="answer" id="look-three" />
+                  <label for="look-three">3.</label>
+
+                  <label for="look-three">Answer Option Three</label>
+                </div>
+
+                <div class="answers">
+                  <input type="radio" name="answer" id="look-four" />
+                  <label for="look-four">4.</label>
+                  <label for="look-four">Answer Option Four</label>
+                </div>
+              </div>
+              <div class="question-actions-container">
+                <button id="edit-btn">Edit</button>
+                <button id="delete-btn">Delete</button>
+              </div>
+            </div><div class="question-container">
+              <h1>What Is DNA?</h1>
+
+              <div>
+                <div class="answers">
+                  <input type="radio" name="answer" id="look-one" />
+                  <label for="look-one">1.</label>
+
+                  <label for="look-one">Answer Option One</label>
+                </div>
+
+                <div class="answers">
+                  <input type="radio" name="answer" id="look-two" />
+                  <label for="look-two">2.</label>
+
+                  <label for="look-two">Answer Option Two</label>
+                </div>
+
+                <div class="answers">
+                  <input type="radio" name="answer" id="look-three" />
+                  <label for="look-three">3.</label>
+
+                  <label for="look-three">Answer Option Three</label>
+                </div>
+
+                <div class="answers">
+                  <input type="radio" name="answer" id="look-four" />
+                  <label for="look-four">4.</label>
+                  <label for="look-four">Answer Option Four</label>
+                </div>
+              </div>
+              <div class="question-actions-container">
+                <button id="edit-btn">Edit</button>
+                <button id="delete-btn">Delete</button>
+              </div>
+            </div><div class="question-container">
+              <h1>What Is DNA?</h1>
+
+              <div>
+                <div class="answers">
+                  <input type="radio" name="answer" id="look-one" />
+                  <label for="look-one">1.</label>
+
+                  <label for="look-one">Answer Option One</label>
+                </div>
+
+                <div class="answers">
+                  <input type="radio" name="answer" id="look-two" />
+                  <label for="look-two">2.</label>
+
+                  <label for="look-two">Answer Option Two</label>
+                </div>
+
+                <div class="answers">
+                  <input type="radio" name="answer" id="look-three" />
+                  <label for="look-three">3.</label>
+
+                  <label for="look-three">Answer Option Three</label>
+                </div>
+
+                <div class="answers">
+                  <input type="radio" name="answer" id="look-four" />
+                  <label for="look-four">4.</label>
+                  <label for="look-four">Answer Option Four</label>
+                </div>
+              </div>
+              <div class="question-actions-container">
+                <button id="edit-btn">Edit</button>
+                <button id="delete-btn">Delete</button>
+              </div>
+            </div>
+
+
+
+          </div>
+        </section>
+
+        <section class="edit-container hidden">
+          <h2>Edit Your Question</h2>
+          <div class="edit-question-container">
+            <h2>Your Question</h2>
+
+            <div class="edit-answers-container">
+              <div class="answer-pairs">
+                <label for="edit1">1.</label>
+                <!-- <input type="text" id="edit" placeholder="Enter An Answer" /> -->
+                <textarea name="editAnswer1" id="edit1" required></textarea>
+                <input
+                  type="radio"
+                  name="editCorrect"
+                  value="true"
+                  id="editCorrect1"
+                />
+                <label for="editCorrect1">correct</label>
+              </div>
+              <div class="answer-pairs">
+                <label for="edit2">2.</label>
+                <!-- <input type="text" id="edit2" placeholder="Enter An Answer" /> -->
+                <textarea name="editAnswer2" id="edit2" required></textarea>
+                <input
+                  type="radio"
+                  name="editCorrect"
+                  value="true"
+                  id="editCorrect2"
+                />
+                <label for="editCorrect2">correct</label>
+              </div>
+              <div class="answer-pairs">
+                <label for="edit3">3.</label>
+                <!-- <input type="text" id="edit3" placeholder="Enter An Answer" /> -->
+                <textarea name="editAnswer3" id="edit2" required></textarea>
+
+                <input
+                  type="radio"
+                  name="editCorrect"
+                  value="true"
+                  id="editCorrect3"
+                />
+                <label for="editCorrect3">correct</label>
+              </div>
+              <div class="answer-pairs">
+                <label for="edit4">4.</label>
+                <!-- <input type="text" id="edit4" placeholder="Enter An Answer" /> -->
+                <textarea name="editAnswer4" id="edit4" required></textarea>
+
+                <input
+                  type="radio"
+                  name="editCorrect"
+                  value="true"
+                  id="editCorrect4"
+                />
+                <label for="editCorrect4">correct</label>
+              </div>
+              <button>Confirm Edit?</button>
+              <!-- 
+              <div class="answers">
+                  <input type="radio" name="answer" id="edit-one" />
+                  <label for="edit-one">1.</label>
+
+                  <label for="edit-one">Answer Option One</label>
+                </div>
+                <div class="answers">
+                  <input type="radio" name="answer" id="edit-two" />
+                  <label for="edit-two">2.</label>
+
+                  <label for="edit-two">Answer Option Two</label>
+                </div>
+                <div class="answers">
+                  <input type="radio" name="answer" id="edit-three" />
+                  <label for="edit-three">3.</label>
+
+                  <label for="edit-three">Answer Option Three</label>
+                </div>
+                <div class="answers">
+                  <input type="radio" name="answer" id="edit-four" />
+                  <label for="edit-four">4.</label>
+
+                  <label for="edit-four">Answer Option Four</label>
+                </div> -->
             </div>
           </div>
         </section>
@@ -118,29 +351,28 @@
           <h2 id="question">Question Here</h2>
           <div class="answers-container">
             <div class="answers">
-              <input type="radio" name="answer" id="1" />
-              <label for="1">1.</label>
-
-              <label for="1">Answer Option One</label>
+              <input type="radio" name="answer" id="one" />
+              <label for="one">1.</label>
+              <label for="one">Answer Option One</label>
             </div>
             <div class="answers">
-              <input type="radio" name="answer" id="2" />
-              <label for="2">2.</label>
+              <input type="radio" name="answer" id="two" />
+              <label for="two">2.</label>
 
-              <label for="2">Answer Option Two</label>
+              <label for="two">Answer Option Two</label>
             </div>
 
             <div class="answers">
-              <input type="radio" name="answer" id="3" />
-              <label for="3">3.</label>
+              <input type="radio" name="answer" id="three" />
+              <label for="three">3.</label>
 
-              <label for="3">Answer Option Three</label>
+              <label for="three">Answer Option Three</label>
             </div>
             <div class="answers">
-              <input type="radio" name="answer" id="4" />
-              <label for="4">4.</label>
+              <input type="radio" name="answer" id="four" />
+              <label for="four">4.</label>
 
-              <label for="4">Answer Option Four</label>
+              <label for="four">Answer Option Four</label>
             </div>
 
             <button id="select-btn">Select The Answer</button>

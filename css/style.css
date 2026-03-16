@@ -144,7 +144,8 @@ nav ul li:active {
   transform: scale(0.97);
 }
 
-input[type="text"] {
+input[type="text"] ,
+textarea{
   padding: 10px 12px;
   font-size: 15px;
 
@@ -155,9 +156,19 @@ input[type="text"] {
   color: var(--text);
 }
 
-input[type="text"]:focus {
+
+
+input[type="text"]:focus ,
+textarea{
   outline: none;
   border-color: var(--primary);
+}
+
+textarea{
+  min-height: 40px;
+  max-height: 40px;
+  min-width: 220px;
+  max-width: 220px;
 }
 
 .start-container,
@@ -166,7 +177,8 @@ input[type="text"]:focus {
 .create-container,
 .create-question-container,
 .create-answer-container,
-.question-look-container {
+.question-look-container,
+.edit-container {
   background: var(--primary-color);
   display: flex;
   flex-direction: column;
@@ -270,7 +282,8 @@ input[type="text"]:focus {
   font-size: 20px;
 }
 
-.create-answer-container {
+.create-answers-container ,
+.edit-answers-container{
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -320,13 +333,63 @@ input[type="text"]:focus {
   align-items: center;
 }
 
-#edit-btn {
+#edit-btn ,
+#confirmNo {
   background: var(--accent);
 }
 
-#delete-btn {
+#delete-btn ,
+#confirmDel {
   background: var(--danger);
 }
+
+/* ------ upper part is for edit container ------ */
+
+.delete-popup-container{
+  position: fixed;
+  inset: 0;
+  background: var(--shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.delete-popup-container.hidden{
+  opacity: 0;
+  pointer-events: none;
+}
+
+.delete-popup-container.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.delete-popup {
+  text-align: center;
+
+}
+
+.delete-popup span{
+  color: var(--danger);
+}
+
+
+/* ------- upper part is for delete pop up ----------- */
+
+
+.edit-answers-container{
+  margin: 10px 0;
+}
+
+
+
+
+
+
+
+
+
 
 .active {
   display: flex;

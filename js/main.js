@@ -2,7 +2,12 @@ const startContainer = document.querySelector(".start-container");
 const quizContainer = document.querySelector(".quiz-container");
 const resultContainer = document.querySelector(".result-container");
 const createContainer = document.querySelector('.create-container');
-const editContainer = document.querySelector('.question-look-container');
+const questionCheck = document.querySelector('.question-look-container');
+const confirmPopup = document.querySelector('.delete-popup-container');
+const editContainer = document.querySelector('.edit-container');
+
+
+
 
 // under is btn and upper is container
 
@@ -14,12 +19,17 @@ const submitBtn = document.getElementById('submit-btn');
 
 const navStartBtn = document.getElementById('nav-start-btn');
 const navCreateBtn = document.getElementById('nav-create-btn');
-const navCheckBtn = document.getElementById('nav-check-btn')
+const navCheckBtn = document.getElementById('nav-check-btn');
 
+
+const editDeleteBtn = document.getElementById('delete-btn');
+const editBtn = document.getElementById('edit-btn');
+const confirmDelBtn = document.getElementById('confirmDel');
+const confirmNoBtn = document.getElementById('confirmNo');
 
 const button = {
 
-  startBtn: function startBtn() {
+  startBtn: () => {
     startContainer.classList.remove("active");
     startContainer.classList.add("hidden");
 
@@ -29,14 +39,18 @@ const button = {
     createContainer.classList.remove('active');
     createContainer.classList.add('hidden');
     
+    questionCheck.classList.remove('active');
+    questionCheck.classList.add('hidden');
+
     editContainer.classList.remove('active');
     editContainer.classList.add('hidden');
+    
 
     quizContainer.classList.remove("hidden");
     quizContainer.classList.add("active");
 
-  },
-  createBtn: function createBtn() {
+  } ,
+  createBtn:  () => {
     startContainer.classList.remove("active");
     startContainer.classList.add("hidden");
 
@@ -46,13 +60,17 @@ const button = {
     quizContainer.classList.remove('active');
     quizContainer.classList.add('hidden');
     
+    questionCheck.classList.remove('active');
+    questionCheck.classList.add('hidden');
+
     editContainer.classList.remove('active');
     editContainer.classList.add('hidden');
+    
 
     createContainer.classList.remove('hidden');
     createContainer.classList.add('active');
   } ,
-  editBtn: function createBtn() {
+  editQuestionBtn:  () => {
     startContainer.classList.remove("active");
     startContainer.classList.add("hidden");
 
@@ -64,6 +82,41 @@ const button = {
     
     createContainer.classList.remove('active');
     createContainer.classList.add('hidden');
+
+    editContainer.classList.remove('active');
+    editContainer.classList.add('hidden');
+    
+
+
+    questionCheck.classList.remove('hidden');
+    questionCheck.classList.add('active');
+  } ,
+
+  editDeleteBtn:  () => {
+    confirmPopup.classList.remove('hidden');
+    confirmPopup.classList.add('active');
+  } ,
+  confirmNoBtn: () => {
+     confirmPopup.classList.add('hidden');
+    confirmPopup.classList.remove('active');
+  } ,
+  editBtn: () => {
+    startContainer.classList.remove("active");
+    startContainer.classList.add("hidden");
+
+    resultContainer.classList.remove("active");
+    resultContainer.classList.add("hidden");
+
+    quizContainer.classList.remove('active');
+    quizContainer.classList.add('hidden');
+    
+    createContainer.classList.remove('active');
+    createContainer.classList.add('hidden');
+
+    questionCheck.classList.remove('active');
+    questionCheck.classList.add('hidden');
+
+
 
     editContainer.classList.remove('hidden');
     editContainer.classList.add('active');
@@ -83,14 +136,14 @@ navStartBtn.addEventListener('click' , button.startBtn);
 
 navCreateBtn.addEventListener('click' , button.createBtn);
 
-navCheckBtn.addEventListener('click' , button.editBtn);
+navCheckBtn.addEventListener('click' , button.editQuestionBtn);
+
+editDeleteBtn.addEventListener('click' , button.editDeleteBtn)
+
+confirmNoBtn.addEventListener('click' , button.confirmNoBtn)
 
 
-
-
-
-
-
+editBtn.addEventListener('click' , button.editBtn)
 
 
 
