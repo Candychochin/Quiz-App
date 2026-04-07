@@ -1,207 +1,163 @@
 const startContainer = document.querySelector(".start-container");
 const quizContainer = document.querySelector(".quiz-container");
 const resultContainer = document.querySelector(".result-container");
-const createContainer = document.querySelector('.create-container');
-const questionCheck = document.querySelector('.question-look-container');
-const confirmPopup = document.querySelector('.delete-popup-container');
-const editContainer = document.querySelector('.edit-container');
-
-
-
+const createContainer = document.querySelector(".create-container");
+const questionCheck = document.querySelector(".question-look-container");
+const confirmPopup = document.querySelector(".delete-popup-container");
+const editContainer = document.querySelector(".edit-container");
 
 // under is btn and upper is container
 
 const startBtn = document.getElementById("start-btn");
-const selectBtn = document.getElementById('select-btn');
-const restartBtn = document.getElementById('restart-btn');
-const createBtn = document.getElementById('create-btn');
-const submitBtn = document.getElementById('submit-btn');
+const selectBtn = document.getElementById("select-btn");
+const restartBtn = document.getElementById("restart-btn");
+const createBtn = document.getElementById("create-btn");
+const submitBtn = document.getElementById("submit-btn");
 
-const navStartBtn = document.getElementById('nav-start-btn');
-const navCreateBtn = document.getElementById('nav-create-btn');
-const navCheckBtn = document.getElementById('nav-check-btn');
+const navStartBtn = document.getElementById("nav-start-btn");
+const navCreateBtn = document.getElementById("nav-create-btn");
+const navCheckBtn = document.getElementById("nav-check-btn");
+
+const editDeleteBtn = document.querySelectorAll(".delete-btn");
+const editBtn = document.querySelectorAll(".edit-btn");
+const confirmDelBtn = document.querySelectorAll(".confirmDel");
+const confirmNoBtn = document.querySelectorAll(".confirmNo");
+
+const containers = [
+  startContainer,
+  quizContainer,
+  resultContainer,
+  createContainer,
+  questionCheck,
+  editContainer,
+];
 
 
-const editDeleteBtn = document.getElementById('delete-btn');
-const editBtn = document.getElementById('edit-btn');
-const confirmDelBtn = document.getElementById('confirmDel');
-const confirmNoBtn = document.getElementById('confirmNo');
+
+
+function hideContainers() {
+  containers.forEach((container) => {
+    container.classList.remove("active");
+    container.classList.add("hidden");
+  });
+}
 
 const button = {
-
   startBtn: () => {
-    startContainer.classList.remove("active");
-    startContainer.classList.add("hidden");
-
-    resultContainer.classList.remove("active");
-    resultContainer.classList.add("hidden");  
-
-    createContainer.classList.remove('active');
-    createContainer.classList.add('hidden');
-    
-    questionCheck.classList.remove('active');
-    questionCheck.classList.add('hidden');
-
-    editContainer.classList.remove('active');
-    editContainer.classList.add('hidden');
-    
+    hideContainers();
 
     quizContainer.classList.remove("hidden");
     quizContainer.classList.add("active");
 
-  } ,
-  createBtn:  () => {
-    startContainer.classList.remove("active");
-    startContainer.classList.add("hidden");
+    shuffledQuestions = [...Questions];
+    shuffle(shuffledQuestions);
 
-    resultContainer.classList.remove("active");
-    resultContainer.classList.add("hidden");
+    currentQuestionIndex = 0;
+    scores = 0;
 
-    quizContainer.classList.remove('active');
-    quizContainer.classList.add('hidden');
-    
-    questionCheck.classList.remove('active');
-    questionCheck.classList.add('hidden');
+    quiz.render();
+  },
 
-    editContainer.classList.remove('active');
-    editContainer.classList.add('hidden');
-    
+  createBtn: () => {
+    hideContainers();
 
-    createContainer.classList.remove('hidden');
-    createContainer.classList.add('active');
-  } ,
-  editQuestionBtn:  () => {
-    startContainer.classList.remove("active");
-    startContainer.classList.add("hidden");
+    createContainer.classList.remove("hidden");
+    createContainer.classList.add("active");
+  },
 
-    resultContainer.classList.remove("active");
-    resultContainer.classList.add("hidden");
+  editQuestionBtn: () => {
+    hideContainers();
 
-    quizContainer.classList.remove('active');
-    quizContainer.classList.add('hidden');
-    
-    createContainer.classList.remove('active');
-    createContainer.classList.add('hidden');
+    questionCheck.classList.remove("hidden");
+    questionCheck.classList.add("active");
+  },
 
-    editContainer.classList.remove('active');
-    editContainer.classList.add('hidden');
-    
+  editDeleteBtn: () => {
+    confirmPopup.classList.remove("hidden");
+    confirmPopup.classList.add("active");
+  },
 
-
-    questionCheck.classList.remove('hidden');
-    questionCheck.classList.add('active');
-  } ,
-
-  editDeleteBtn:  () => {
-    confirmPopup.classList.remove('hidden');
-    confirmPopup.classList.add('active');
-  } ,
   confirmNoBtn: () => {
-     confirmPopup.classList.add('hidden');
-    confirmPopup.classList.remove('active');
-  } ,
+    confirmPopup.classList.add("hidden");
+    confirmPopup.classList.remove("active");
+  },
+
   editBtn: () => {
-    startContainer.classList.remove("active");
-    startContainer.classList.add("hidden");
+    hideContainers();
 
-    resultContainer.classList.remove("active");
-    resultContainer.classList.add("hidden");
+    editContainer.classList.remove("hidden");
+    editContainer.classList.add("active");
+  },
 
-    quizContainer.classList.remove('active');
-    quizContainer.classList.add('hidden');
+  selectBtn: () => {
+    const selected = document.querySelector('input[name="answer"]:checked');
+
     
-    createContainer.classList.remove('active');
-    createContainer.classList.add('hidden');
 
-    questionCheck.classList.remove('active');
-    questionCheck.classList.add('hidden');
+    if (!selected) return;
+
+    const selectedIndex = [
+      ...document.querySelectorAll('input[name="answer"]'),
+    ].indexOf(selected);
+
+  
+    let currentQuestion = Questions[currentQuestionIndex]
+
+    if (quiz.currentAnswers[selectedIndex].correct) {
+      scores++;
+    }
+   
+    
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < Questions.length) {
+      quiz.render();
+    } else {
+      hideContainers();
+      resultContainer.classList.remove("hidden");
+      resultContainer.classList.add("active");
+
+      quiz.renderResult();
+    }
+  },
+
+  restartBtn: () => {
+    score = 0;
+    currentQuestionIndex = 0;
+
+    hideContainers();
+    quizContainer.classList.remove('hidden');
+    quizContainer.classList.add('active');
 
 
+    quiz.render();
 
-    editContainer.classList.remove('hidden');
-    editContainer.classList.add('active');
-  }
-
-
-
-
-
+  },
 };
 
 startBtn.addEventListener("click", button.startBtn);
 
-createBtn.addEventListener('click' , button.createBtn);
+createBtn.addEventListener("click", button.createBtn);
 
-navStartBtn.addEventListener('click' , button.startBtn);
+navStartBtn.addEventListener("click", button.startBtn);
 
-navCreateBtn.addEventListener('click' , button.createBtn);
+navCreateBtn.addEventListener("click", button.createBtn);
 
-navCheckBtn.addEventListener('click' , button.editQuestionBtn);
+navCheckBtn.addEventListener("click", button.editQuestionBtn);
 
-editDeleteBtn.addEventListener('click' , button.editDeleteBtn)
+selectBtn.addEventListener("click", button.selectBtn);
 
-confirmNoBtn.addEventListener('click' , button.confirmNoBtn)
+restartBtn.addEventListener("click", button.restartBtn);
 
+editDeleteBtn.forEach((btn) => {
+  btn.addEventListener("click", button.editDeleteBtn);
+});
 
-editBtn.addEventListener('click' , button.editBtn)
+confirmNoBtn.forEach((btn) => {
+  btn.addEventListener("click", button.confirmNoBtn);
+});
 
-
-
-//   ------ test ------
-
-// Elements for create functionality
-// const createQuestionInput = document.getElementById('create-question');
-// const answerInputs = [
-//     document.getElementById('answer1'),
-//     document.getElementById('answer2'),
-//     document.getElementById('answer3'),
-//     document.getElementById('answer4')
-// ];
-// const correctCheckboxes = [
-//     document.getElementById('correct1'),
-//     document.getElementById('correct2'),
-//     document.getElementById('correct3'),
-//     document.getElementById('correct4')
-// ];
-
-// Ensure only one checkbox is checked at a time (radio-like behavior)
-
-// correctCheckboxes.forEach((checkbox, index) => {
-//     checkbox.addEventListener('change', () => {
-//         if (checkbox.checked) {
-//             // Uncheck all others
-//             correctCheckboxes.forEach((otherCheckbox, otherIndex) => {
-//                 if (otherIndex !== index) otherCheckbox.checked = false;
-//             });
-//         }
-//     });
-// });
-
-// Example: Function to save the question (call this on a submit button click)
-// function saveQuestion() {
-//     const question = createQuestionInput.value;
-//     const answers = answerInputs.map(input => input.value);
-//     const correctIndex = correctCheckboxes.findIndex(checkbox => checkbox.checked);
-
-//     if (!question || answers.some(answer => !answer) || correctIndex === -1) {
-//         alert('Please fill in all fields and select the correct answer.');
-//         return;
-//     }
-
-//     // Store the question data (e.g., push to an array or send to a server)
-//     const questionData = {
-//         question,
-//         answers,
-//         correctAnswer: correctIndex  // Index of the correct answer
-//     };
-//     console.log('Saved question:', questionData);  // Replace with actual storage logic
-
-//     // Clear fields after saving
-//     createQuestionInput.value = '';
-//     answerInputs.forEach(input => input.value = '');
-//     correctCheckboxes.forEach(checkbox => checkbox.checked = false);
-// }
-
-// Add a submit button to the HTML and attach the event
-// Example: <button id="submit-question">Save Question</button>
-// Then: document.getElementById('submit-question').addEventListener('click', saveQuestion);
+editBtn.forEach((btn) => {
+  btn.addEventListener("click", button.editBtn);
+});

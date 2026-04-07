@@ -32,7 +32,6 @@ body {
   font-weight: 700;
   font-family: system-ui, sans-serif;
   text-shadow: 0 0 5px var(--shadow);
-  
 }
 
 p {
@@ -43,15 +42,13 @@ p {
   width: 100%;
   max-width: 700px;
 
-
   display: flex;
   flex-direction: column;
 
-  padding: 90px  10px 40px;
+  padding: 90px 10px 40px;
   gap: 20px;
 
   position: relative;
-  
 }
 
 header {
@@ -61,7 +58,7 @@ header {
   z-index: 99;
 
   padding: 10px;
-  
+
   width: 100%;
   max-width: 660px;
 
@@ -76,7 +73,6 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 
   border-bottom: 1px solid #334155;
 }
@@ -91,12 +87,8 @@ header {
 nav ul {
   list-style: none;
 
-  
-
   display: flex;
   gap: 12px;
-
-
 }
 
 nav ul li {
@@ -133,19 +125,19 @@ button {
   transition: 0.2s;
 }
 
-button:hover ,
+button:hover,
 nav ul li:hover {
   background: var(--primary-hover);
   box-shadow: 0px 0px 6px var(--shadow);
 }
 
-button:active ,
+button:active,
 nav ul li:active {
   transform: scale(0.97);
 }
 
-input[type="text"] ,
-textarea{
+input[type="text"],
+textarea {
   padding: 10px 12px;
   font-size: 15px;
 
@@ -156,15 +148,13 @@ textarea{
   color: var(--text);
 }
 
-
-
-input[type="text"]:focus ,
-textarea{
+input[type="text"]:focus,
+textarea {
   outline: none;
   border-color: var(--primary);
 }
 
-textarea{
+textarea {
   min-height: 40px;
   max-height: 40px;
   min-width: 220px;
@@ -207,14 +197,14 @@ textarea{
   align-items: center;
   padding: 30px 20px;
   gap: 10px;
-    width: 100%;
+  width: 100%;
 }
 
 .answers-container {
   margin: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .answers {
@@ -231,6 +221,7 @@ textarea{
   background: #0f172a;
   box-shadow: 2px 2px 10px var(--shadow);
 }
+
 
 .answers:hover {
   border-color: var(--primary);
@@ -282,8 +273,8 @@ textarea{
   font-size: 20px;
 }
 
-.create-answers-container ,
-.edit-answers-container{
+.create-answers-container,
+.edit-answers-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -304,7 +295,7 @@ textarea{
   gap: 10px;
 }
 
-.question-container {
+.look-question-container {
   background: #0f172a;
   padding: 16px;
   border-radius: 10px;
@@ -316,6 +307,12 @@ textarea{
   box-shadow: 0 0 10px var(--shadow);
 }
 
+.look-answer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .border-container {
   background-color: #0f172a;
   inset: 2px;
@@ -324,6 +321,15 @@ textarea{
   border-radius: inherit;
   max-height: 400px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 10px;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .question-actions-container {
@@ -333,19 +339,29 @@ textarea{
   align-items: center;
 }
 
-#edit-btn ,
-#confirmNo {
+.edit-btn,
+.confirmNo {
   background: var(--accent);
 }
 
-#delete-btn ,
-#confirmDel {
+.edit-btn:hover,
+.confirmNo:hover {
+  background: #22c55ecc;
+}
+
+.delete-btn,
+.confirmDel {
   background: var(--danger);
+}
+
+.delete-btn:hover,
+.confirmDel:hover {
+  background: #ef4444cc;
 }
 
 /* ------ upper part is for edit container ------ */
 
-.delete-popup-container{
+.delete-popup-container {
   position: fixed;
   inset: 0;
   background: var(--shadow);
@@ -355,41 +371,33 @@ textarea{
   z-index: 10;
 }
 
-.delete-popup-container.hidden{
+.delete-popup-container.hidden {
   opacity: 0;
   pointer-events: none;
 }
 
-.delete-popup-container.active{
+.delete-popup-container.active {
   opacity: 1;
   pointer-events: auto;
 }
 
 .delete-popup {
   text-align: center;
-
 }
 
-.delete-popup span{
+.delete-popup span {
   color: var(--danger);
 }
 
-
 /* ------- upper part is for delete pop up ----------- */
 
-
-.edit-answers-container{
+.edit-answers-container {
   margin: 10px 0;
 }
 
-
-
-
-
-
-
-
-
+::-webkit-resizer {
+  display: none;
+}
 
 .active {
   display: flex;
@@ -401,4 +409,24 @@ textarea{
 
 .hidden {
   display: none;
+}
+
+.progress-container {
+  --progress-bar-height: 8px;
+
+  width: 100%;
+  height: var(--progress-bar-height);
+  padding: 1px;
+  background-color: var(--primary);
+  position: relative;
+  z-index: 1;
+}
+
+.progress-bar {
+  width: 0%;
+  height: calc(var(--progress-bar-height) - 2px);
+  top: 0;
+  left: 0;
+  background-color: var(--accent);
+  z-index: 2;
 }
