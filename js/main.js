@@ -32,9 +32,6 @@ const containers = [
   editContainer,
 ];
 
-
-
-
 function hideContainers() {
   containers.forEach((container) => {
     container.classList.remove("active");
@@ -92,22 +89,17 @@ const button = {
   selectBtn: () => {
     const selected = document.querySelector('input[name="answer"]:checked');
 
-    
-
     if (!selected) return;
 
     const selectedIndex = [
       ...document.querySelectorAll('input[name="answer"]'),
     ].indexOf(selected);
 
-  
-    let currentQuestion = Questions[currentQuestionIndex]
+    let currentQuestion = Questions[currentQuestionIndex];
 
     if (quiz.currentAnswers[selectedIndex].correct) {
       scores++;
     }
-   
-    
 
     currentQuestionIndex++;
 
@@ -127,12 +119,10 @@ const button = {
     currentQuestionIndex = 0;
 
     hideContainers();
-    quizContainer.classList.remove('hidden');
-    quizContainer.classList.add('active');
-
+    quizContainer.classList.remove("hidden");
+    quizContainer.classList.add("active");
 
     quiz.render();
-
   },
 };
 

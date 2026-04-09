@@ -59,37 +59,46 @@
           </p>
           <div class="create-answers-container">
             <div class="answer-pairs">
-              <label for="answer1">1.</label>
+
+              <label for="create-answer1">1.</label>
               <input
                 type="text"
-                id="answer1"
+                id="create-answer1"
                 placeholder="Enter An Answer"
                 required
               />
-              <input type="radio" name="correct" value="true" id="correct1" />
-              <label for="correct1">correct</label>
+
+              <input type="radio" name="create-correct" value="true" id="create-correct1" required/>
+              <label for="create-correct1">correct</label>
+            
             </div>
             <div class="answer-pairs">
-              <label for="answer2">2.</label>
+            
+              <label for="create-answer2">2.</label>
               <input
                 type="text"
-                id="answer2"
+                id="create-answer2"
                 placeholder="Enter An Answer"
                 required
               />
-              <input type="radio" name="correct" value="true" id="correct2" />
-              <label for="correct2">correct</label>
+            
+              <input type="radio" name="create-correct" value="true" id="create-correct2" required />
+              <label for="create-correct2">correct</label>
+            
             </div>
             <div class="answer-pairs">
-              <label for="answer3">3.</label>
+            
+              <label for="create-answer3">3.</label>
               <input
                 type="text"
-                id="answer3"
+                id="create-answer3"
                 placeholder="Enter An Answer"
                 required
               />
-              <input type="radio" name="correct" value="true" id="correct3" />
-              <label for="correct3">correct</label>
+            
+              <input type="radio" name="create-correct" value="true" id="create-correct3" required />
+              <label for="create-correct3">correct</label>
+            
             </div>
            
           </div>
@@ -253,7 +262,7 @@
           <div class="result-content">
             <h2 id="result-congrats">Congrats Letter</h2>
             <h3 id="result-score">Scores</h3>
-            <h3 id="result-adivce">Advice</h3>
+            <h3 id="result-advice">Advice</h3>
           </div>
           <button id="restart-btn">Restart The Test</button>
         </section>
@@ -261,8 +270,9 @@
       </main>
     </div>
 
+    <script src="./data/questions.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/quiz.js"></script>
-    <script src="./data/questions.js"></script>
+    <script src="./js/createQuestion.js"></script>    
   </body>
 </html>
