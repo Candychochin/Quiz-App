@@ -209,13 +209,17 @@ textarea {
   gap: 10px;
 }
 
+
+
 .answers {
   width: 100%;
+  min-width: 250px;
 
   padding: 10px 14px;
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
 
   border-radius: 8px;
@@ -300,6 +304,8 @@ textarea {
 
 .question-look-container {
   height: auto;
+  width: 100%;
+  
   gap: 10px;
 }
 
@@ -327,6 +333,8 @@ textarea {
   padding: 10px;
   box-shadow: inset 0 0 10px var(--shadow);
   border-radius: inherit;
+  width: 100%;
+  max-width: 380px;
   max-height: 400px;
   overflow-y: auto;
   display: flex;
@@ -341,9 +349,10 @@ textarea {
 }
 
 .question-actions-container {
+  padding: 0 30px;
   display: flex;
   gap: 10px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 

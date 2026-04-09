@@ -65,8 +65,13 @@ const button = {
   editQuestionBtn: () => {
     hideContainers();
 
+    renderQuestionList();
+
     questionCheck.classList.remove("hidden");
     questionCheck.classList.add("active");
+
+    
+    
   },
 
   editDeleteBtn: () => {

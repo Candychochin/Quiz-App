@@ -109,43 +109,50 @@
         <section class="question-look-container hidden">
           <h2>Your Questions</h2>
 
-          <div class="border-container">
-            <div class="look-question-container">
-              <h1>What Is DNA?</h1>
+          <div class="border-container" id="question-list">
+
+            <!-- <div class="look-question-container" >
+
+              <h1 id="look-question">What Is DNA?</h1>
 
               <div class="look-answer-container">
                 <div class="answers">
-                  <label for="look-one">
-                    <input type="radio" name="look-answer" id="look-one" />
+                  <label for="look-answer1">
+                    <input type="radio" name="look-answer1" id="look-answer1-r" />
 
-                    <span>Answer Option One</span>
+                    <span id="look-answer1-t">Answer Option One</span>
                   </label>
                 </div>
 
                 <div class="answers">
-                  <label for="look-two">
-                    <input type="radio" name="look-answer" id="look-two" />
+                  <label for="look-answer2">
+                    <input type="radio" name="look-answer" id="look-answer2-r" />
 
-                    <span>Answer Option Two</span>
+                    <span id="look-answer2-t">Answer Option Two</span>
                   </label>
                 </div>
 
                 <div class="answers">
-                  <label for="look-three">
-                    <input type="radio" name="look-answer" id="look-three" />
+                  <label for="look-answer3">
+                    <input type="radio" name="look-answer" id="look-answer3-r" />
 
-                    <span>Answer Option Three</span>
+                    <span id="look-answer3-t">Answer Option Three</span>
                   </label>
                 </div>
 
                 
               </div>
+
               <div class="question-actions-container">
                 <button class="edit-btn">Edit</button>
                 <button class="delete-btn">Delete</button>
               </div>
-            </div>
+            </div> -->
+
+
+
           </div>
+
         </section>
 
         <section class="edit-container hidden">
@@ -271,8 +278,11 @@
     </div>
 
     <script src="./data/questions.js"></script>
+    <script src="./js/createQuestion.js"></script>
+    <script src="./js/checkQuestion.js"></script>
+    
     <script src="./js/main.js"></script>
     <script src="./js/quiz.js"></script>
-    <script src="./js/createQuestion.js"></script>    
+        
   </body>
 </html>
