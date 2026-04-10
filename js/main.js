@@ -97,6 +97,7 @@ const button = {
       resultContainer.classList.remove("hidden");
       resultContainer.classList.add("active");
 
+      updateProgress();
       quiz.renderResult();
     }
   },

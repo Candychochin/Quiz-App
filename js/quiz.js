@@ -9,7 +9,8 @@ let resultCongrats = document.getElementById("result-congrats");
 let resultScore = document.getElementById("result-score");
 let resultAdvice = document.getElementById("result-advice");
 
-let progressBar = document.querySelector(".progress-bar");
+let progressBar = document.getElementById("progress-bar");
+
 
 let currentQuestionIndex = 0;
 let scores = 0;
@@ -36,6 +37,7 @@ const quiz = {
     document.querySelectorAll('input[name="answer"]').forEach((input) => {
       input.checked = false;
     });
+    updateProgress();
   },
 
   renderResult: () => {
@@ -53,7 +55,7 @@ const quiz = {
         resultAdvice.textContent = "Excellent!";
     } 
 
-
+    
 
 
   },
@@ -65,4 +67,14 @@ function shuffle(array) {
 
     [array[i], array[j]] = [array[j], array[i]];
   }
+}
+
+function updateProgress() {
+  let total = Questions.length;
+  let progress = currentQuestionIndex + 1;
+
+  let percentage = (progress / total) * 100;
+
+  progressBar.style.width = percentage + "%";
+
 }
