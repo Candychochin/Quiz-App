@@ -68,7 +68,7 @@ function renderQuestionList() {
             <div class="question-actions-container">
             
                 <button class="edit-btn" data-index="${index}">Edit</button>
-                <button class="delete-btn" data-index=${index}>Delete</button>
+                <button class="delete-btn" data-index="${index}">Delete</button>
             
             </div>
         

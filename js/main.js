@@ -18,10 +18,7 @@ const navStartBtn = document.getElementById("nav-start-btn");
 const navCreateBtn = document.getElementById("nav-create-btn");
 const navCheckBtn = document.getElementById("nav-check-btn");
 
-const editDeleteBtn = document.querySelectorAll(".delete-btn");
-const editBtn = document.querySelectorAll(".edit-btn");
-const confirmDelBtn = document.querySelectorAll(".confirmDel");
-const confirmNoBtn = document.querySelectorAll(".confirmNo");
+
 
 const containers = [
   startContainer,
@@ -74,22 +71,7 @@ const button = {
     
   },
 
-  editDeleteBtn: () => {
-    confirmPopup.classList.remove("hidden");
-    confirmPopup.classList.add("active");
-  },
-
-  confirmNoBtn: () => {
-    confirmPopup.classList.add("hidden");
-    confirmPopup.classList.remove("active");
-  },
-
-  editBtn: () => {
-    hideContainers();
-
-    editContainer.classList.remove("hidden");
-    editContainer.classList.add("active");
-  },
+  
 
   selectBtn: () => {
     const selected = document.querySelector('input[name="answer"]:checked');
@@ -145,14 +127,4 @@ selectBtn.addEventListener("click", button.selectBtn);
 
 restartBtn.addEventListener("click", button.restartBtn);
 
-editDeleteBtn.forEach((btn) => {
-  btn.addEventListener("click", button.editDeleteBtn);
-});
 
-confirmNoBtn.forEach((btn) => {
-  btn.addEventListener("click", button.confirmNoBtn);
-});
-
-editBtn.forEach((btn) => {
-  btn.addEventListener("click", button.editBtn);
-});

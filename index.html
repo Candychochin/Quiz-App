@@ -110,47 +110,6 @@
           <h2>Your Questions</h2>
 
           <div class="border-container" id="question-list">
-
-            <!-- <div class="look-question-container" >
-
-              <h1 id="look-question">What Is DNA?</h1>
-
-              <div class="look-answer-container">
-                <div class="answers">
-                  <label for="look-answer1">
-                    <input type="radio" name="look-answer1" id="look-answer1-r" />
-
-                    <span id="look-answer1-t">Answer Option One</span>
-                  </label>
-                </div>
-
-                <div class="answers">
-                  <label for="look-answer2">
-                    <input type="radio" name="look-answer" id="look-answer2-r" />
-
-                    <span id="look-answer2-t">Answer Option Two</span>
-                  </label>
-                </div>
-
-                <div class="answers">
-                  <label for="look-answer3">
-                    <input type="radio" name="look-answer" id="look-answer3-r" />
-
-                    <span id="look-answer3-t">Answer Option Three</span>
-                  </label>
-                </div>
-
-                
-              </div>
-
-              <div class="question-actions-container">
-                <button class="edit-btn">Edit</button>
-                <button class="delete-btn">Delete</button>
-              </div>
-            </div> -->
-
-
-
           </div>
 
         </section>
@@ -158,13 +117,14 @@
         <section class="edit-container hidden">
           <h2>Edit Your Question</h2>
           <div class="edit-question-container">
-            <h2>Your Question</h2>
+            
+            <input type="text" name="editQuestion" id="editQuestion"></input>
 
             <div class="edit-answers-container">
               <div class="answer-pairs">
-                <label for="edit1">1.</label>
-                <!-- <input type="text" id="edit" placeholder="Enter An Answer" /> -->
-                <textarea name="editAnswer1" id="edit1" required></textarea>
+                <label for="editAnswer1">1.</label>
+                
+                <input type="text" name="editAnswer1" id="editAnswer1" required></input>
                 <input
                   type="radio"
                   name="editCorrect"
@@ -174,9 +134,9 @@
                 <label for="editCorrect1">correct</label>
               </div>
               <div class="answer-pairs">
-                <label for="edit2">2.</label>
-                <!-- <input type="text" id="edit2" placeholder="Enter An Answer" /> -->
-                <textarea name="editAnswer2" id="edit2" required></textarea>
+                <label for="editAnswer2">2.</label>
+                
+                <input type="text" name="editAnswer2" id="editAnswer2" required></input>
                 <input
                   type="radio"
                   name="editCorrect"
@@ -186,9 +146,9 @@
                 <label for="editCorrect2">correct</label>
               </div>
               <div class="answer-pairs">
-                <label for="edit3">3.</label>
-                <!-- <input type="text" id="edit3" placeholder="Enter An Answer" /> -->
-                <textarea name="editAnswer3" id="edit3" required></textarea>
+                <label for="editAnswer3">3.</label>
+                
+                <input type="text" name="editAnswer3" id="editAnswer3" required></input>
 
                 <input
                   type="radio"
@@ -199,52 +159,28 @@
                 <label for="editCorrect3">correct</label>
               </div>
               
-              <button>Confirm Edit?</button>
-              <!-- 
-              <div class="answers">
-                  <input type="radio" name="answer" id="edit-one" />
-                  <label for="edit-one">1.</label>
+              <button id="edit-confirm-btn" class="edit-confirm">Confirm Edit?</button>
 
-                  <label for="edit-one">Answer Option One</label>
-                </div>
-                <div class="answers">
-                  <input type="radio" name="answer" id="edit-two" />
-                  <label for="edit-two">2.</label>
-
-                  <label for="edit-two">Answer Option Two</label>
-                </div>
-                <div class="answers">
-                  <input type="radio" name="answer" id="edit-three" />
-                  <label for="edit-three">3.</label>
-
-                  <label for="edit-three">Answer Option Three</label>
-                </div>
-                <div class="answers">
-                  <input type="radio" name="answer" id="edit-four" />
-                  <label for="edit-four">4.</label>
-
-                  <label for="edit-four">Answer Option Four</label>
-                </div> -->
             </div>
           </div>
         </section>
 
         <section class="quiz-container hidden">
-          <h2 id="progressNum">1 / 10</h2>
-          <h2 id="question">Question Here</h2>
+          <h2 id="progressNum">0 / 0</h2>
+          <h2 id="question">Question</h2>
           <div class="answers-container">
             <div class="answers">
               <label for="one" id="answerOne">
                 <input type="radio" name="answer" id="one" />
 
-                <span>Answer Option One</span>
+                <span>Answer Option</span>
               </label>
             </div>
             <div class="answers">
               <label for="two" id="answerTwo">
                 <input type="radio" name="answer" id="two" />
 
-                <span>Answer Option Two</span>
+                <span>Answer Option</span>
               </label>
             </div>
 
@@ -252,7 +188,7 @@
               <label for="three" id="answerThree">
                 <input type="radio" name="answer" id="three" />
 
-                <span>Answer Option Three</span>
+                <span>Answer Option</span>
               </label>
             </div>
 
@@ -261,7 +197,7 @@
             <button id="select-btn">Select The Answer</button>
           </div>
           <div class="progress-container">
-            <div class="progress-bar"></div>
+            <div id="progress-bar"></div>
           </div>
         </section>
 
@@ -283,6 +219,6 @@
     
     <script src="./js/main.js"></script>
     <script src="./js/quiz.js"></script>
-        
+    <script src="./js/questionManager.js"></script>
   </body>
 </html>

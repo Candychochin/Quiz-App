@@ -136,8 +136,7 @@ nav ul li:active {
   transform: scale(0.97);
 }
 
-input[type="text"],
-textarea {
+input[type="text"] {
   height: 50px;
   
   padding: 10px 14px;
@@ -150,18 +149,12 @@ textarea {
   color: var(--text);
 }
 
-input[type="text"]:focus,
-textarea {
+input[type="text"]:focus {
   outline: none;
   border-color: var(--primary);
 }
 
-textarea {
-  min-height: 40px;
-  max-height: 40px;
-  min-width: 220px;
-  max-width: 220px;
-}
+
 
 .start-container,
 .quiz-container,
@@ -296,7 +289,7 @@ textarea {
 
 #create-question{
   width: 100%;
-  min-width: 330px;
+  min-width: 320px;
 
 }
 
@@ -412,6 +405,12 @@ textarea {
   margin: 10px 0;
 }
 
+#editQuestion{
+  width: 100%;
+  min-width: 320px;
+  height: 60px;
+}
+
 ::-webkit-resizer {
   display: none;
 }
@@ -429,21 +428,19 @@ textarea {
 }
 
 .progress-container {
-  --progress-bar-height: 8px;
+  
 
   width: 100%;
-  height: var(--progress-bar-height);
-  padding: 1px;
-  background-color: var(--primary);
-  position: relative;
-  z-index: 1;
+  height: 10px;
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+
 }
 
-.progress-bar {
+#progress-bar {
+  height: 100%;
   width: 0%;
-  height: calc(var(--progress-bar-height) - 2px);
-  top: 0;
-  left: 0;
-  background-color: var(--accent);
-  z-index: 2;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
 }
