@@ -24,7 +24,7 @@ let editIndex = null;
 
 questionList.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-btn")) {
-    const index = e.target.dataset.index;
+    const index = Number( e.target.dataset.index);
 
     confirmPopup.classList.remove("hidden");
     confirmPopup.classList.add("active");
@@ -33,7 +33,8 @@ questionList.addEventListener("click", (e) => {
   };
   if (e.target.classList.contains("edit-btn")) {
 
-    const index = e.target.dataset.index;
+    const index = Number( e.target.dataset.index);
+    editIndex = index;
 
     editQuestionInput.value = Questions[index].question;
 
@@ -61,8 +62,7 @@ editContainer.addEventListener('click' , (e) => {
 
 
     if(e.target.classList.contains('edit-confirm')){
-      const index = e.target.dataset.index;
-      editIndex = index;
+      
 
     if (!editQuestionInput.value) {
       alert("Please fill in the question field.");
@@ -105,7 +105,9 @@ editContainer.addEventListener('click' , (e) => {
     };
     
     Questions[editIndex] = newEditedQuestion;
-    
+    saveQuestions();
+
+
     editQuestionInput.value = "";
     editAnswerInputOne.value = "";
     editAnswerInputTwo.value = "";
@@ -135,6 +137,7 @@ editContainer.addEventListener('click' , (e) => {
 confirmDelBtn.addEventListener("click", () => {
   Questions.splice(deleteIndex, 1);
 
+  saveQuestions();
   renderQuestionList();
 
   confirmPopup.classList.remove("active");

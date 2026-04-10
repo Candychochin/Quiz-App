@@ -62,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
     createCorrectRadioTwo.checked = false;
     createCorrectRadioThree.checked = false;
 
+    saveQuestions();
+
     renderQuestionList();
 
     alert("Question created successfully!");

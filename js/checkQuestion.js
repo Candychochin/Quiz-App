@@ -40,43 +40,41 @@ function renderQuestionList() {
   questionList.innerHTML = "";
 
   Questions.forEach((q, index) => {
+
     const div = document.createElement("div");
     div.classList.add("look-question-container");
 
-   
+    div.innerHTML = 
+            `
+              <h2>${index + 1}.   ${q.question}</h2>
 
-    div.innerHTML = `
-            <h2>${index + 1}.   ${q.question}</h2>
+              <div class="look-answer-container">
+              
+              ${q.answers
+                .map(
+                  (a) =>
+                    `
+                        <div class='answers'>
+                            <span>${a.text} </span>
+                            <span>${a.correct}</span>
 
-            <div class="look-answer-container">
-            
-            ${q.answers
-              .map(
-                (a) =>
-                  `
-                <div class='answers'>
-                    <span>${a.text} </span>
-                    <span>${a.correct}</span>
+                        </div>
+                    `,
+                      ).join(" ")}
 
-                </div>
-
-            `,
-              ).join(" ")}
-
-            </div>
-             
-            <div class="question-actions-container">
-            
-                <button class="edit-btn" data-index="${index}">Edit</button>
-                <button class="delete-btn" data-index="${index}">Delete</button>
-            
-            </div>
-        
-        
-        
-        
-        `;
+                    </div>
+                    
+                    <div class="question-actions-container">
+                    
+                        <button class="edit-btn" data-index="${index}">Edit</button>
+                        <button class="delete-btn" data-index="${index}">Delete</button>
+                    
+                    </div>
+                
+            `;
 
     questionList.appendChild(div);
+
+
   });
 }
