@@ -1,13 +1,14 @@
 let Questions = [];
 
-saveQuestions();
-
 const savedQuestions = localStorage.getItem("questions");
 
-if(savedQuestions.length = 0) {
+if(savedQuestions) {
     Questions = JSON.parse(savedQuestions);
 
-} else {
+}
+
+
+if(!savedQuestions || Questions === '[]' || Questions.length === 0) {
   Questions = [
   {
     question: "What is the lowest level of biological organization?",
