@@ -18,8 +18,6 @@ const navStartBtn = document.getElementById("nav-start-btn");
 const navCreateBtn = document.getElementById("nav-create-btn");
 const navCheckBtn = document.getElementById("nav-check-btn");
 
-
-
 const containers = [
   startContainer,
   quizContainer,
@@ -28,6 +26,14 @@ const containers = [
   questionCheck,
   editContainer,
 ];
+
+function activeBtnStyle() {
+  navStartBtn.classList.remove('btn-active');
+  navCheckBtn.classList.remove('btn-active')
+  navCreateBtn.classList.remove('btn-active')
+
+  
+}
 
 function hideContainers() {
   containers.forEach((container) => {
@@ -38,7 +44,10 @@ function hideContainers() {
 
 const button = {
   startBtn: () => {
+    activeBtnStyle();
+    navStartBtn.classList.add('btn-active');
     hideContainers();
+
 
     quizContainer.classList.remove("hidden");
     quizContainer.classList.add("active");
@@ -53,6 +62,9 @@ const button = {
   },
 
   createBtn: () => {
+    activeBtnStyle();
+    navCreateBtn.classList.add('btn-active')
+
     hideContainers();
 
     createContainer.classList.remove("hidden");
@@ -60,18 +72,15 @@ const button = {
   },
 
   editQuestionBtn: () => {
+    activeBtnStyle();
+    navCheckBtn.classList.add('btn-active')
     hideContainers();
 
     renderQuestionList();
 
     questionCheck.classList.remove("hidden");
     questionCheck.classList.add("active");
-
-    
-    
   },
-
-  
 
   selectBtn: () => {
     const selected = document.querySelector('input[name="answer"]:checked');
@@ -127,5 +136,3 @@ navCheckBtn.addEventListener("click", button.editQuestionBtn);
 selectBtn.addEventListener("click", button.selectBtn);
 
 restartBtn.addEventListener("click", button.restartBtn);
-
-

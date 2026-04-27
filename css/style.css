@@ -127,6 +127,7 @@ button {
 
 button:hover,
 nav ul li:hover {
+  color: var(--text);
   background: var(--primary-hover);
   box-shadow: 0px 0px 6px var(--shadow);
 }
@@ -136,9 +137,11 @@ nav ul li:active {
   transform: scale(0.97);
 }
 
+
+
 input[type="text"] {
   height: 50px;
-  
+
   padding: 10px 14px;
   font-size: 15px;
 
@@ -153,8 +156,6 @@ input[type="text"]:focus {
   outline: none;
   border-color: var(--primary);
 }
-
-
 
 .start-container,
 .quiz-container,
@@ -202,8 +203,6 @@ input[type="text"]:focus {
   gap: 10px;
 }
 
-
-
 .answers {
   width: 100%;
   min-width: 250px;
@@ -220,7 +219,6 @@ input[type="text"]:focus {
   background: #0f172a;
   box-shadow: 2px 2px 10px var(--shadow);
 }
-
 
 .answers:hover {
   border-color: var(--primary);
@@ -287,10 +285,9 @@ input[type="text"]:focus {
   gap: 10px;
 }
 
-#create-question{
+#create-question {
   width: 100%;
   min-width: 320px;
-
 }
 
 /* ----- Upper Part is for Create Quiz Container ----- */
@@ -298,7 +295,7 @@ input[type="text"]:focus {
 .question-look-container {
   height: auto;
   width: 100%;
-  
+
   gap: 10px;
 }
 
@@ -350,12 +347,14 @@ input[type="text"]:focus {
 }
 
 .edit-btn,
-.confirmNo {
+.confirmNo,
+.notiConfirm {
   background: var(--accent);
 }
 
 .edit-btn:hover,
-.confirmNo:hover {
+.confirmNo:hover,
+.notiConfirm:hover {
   background: #22c55ecc;
 }
 
@@ -371,7 +370,8 @@ input[type="text"]:focus {
 
 /* ------ upper part is for edit container ------ */
 
-.delete-popup-container {
+.delete-popup-container ,
+.notification-container {
   position: fixed;
   inset: 0;
   background: var(--shadow);
@@ -381,17 +381,20 @@ input[type="text"]:focus {
   z-index: 10;
 }
 
-.delete-popup-container.hidden {
+.delete-popup-container.hidden ,
+.notification-container.hidden {
   opacity: 0;
   pointer-events: none;
 }
 
-.delete-popup-container.active {
+.delete-popup-container.active ,
+.notification-container.active {
   opacity: 1;
   pointer-events: auto;
 }
 
-.delete-popup {
+.delete-popup ,
+.noti-popup {
   text-align: center;
 }
 
@@ -405,7 +408,7 @@ input[type="text"]:focus {
   margin: 10px 0;
 }
 
-#editQuestion{
+#editQuestion {
   width: 100%;
   min-width: 320px;
   height: 60px;
@@ -428,14 +431,11 @@ input[type="text"]:focus {
 }
 
 .progress-container {
-  
-
   width: 100%;
   height: 10px;
   background: #ddd;
   border-radius: 10px;
   overflow: hidden;
-
 }
 
 #progress-bar {
@@ -443,4 +443,12 @@ input[type="text"]:focus {
   width: 0%;
   background-color: #4caf50;
   transition: width 0.3s ease;
+}
+
+.btn-active{
+  color: var(--primary);
+  background-color: var(--text);
+  border: var(--primary) 1px solid;
+  text-shadow: 0 1px 1px var(--primary);
+
 }

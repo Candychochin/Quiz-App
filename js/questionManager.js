@@ -1,39 +1,59 @@
-const editQuestionInput = document.getElementById('editQuestion');
-const editAnswerInputOne = document.getElementById('editAnswer1');
-const editAnswerInputTwo = document.getElementById('editAnswer2'); 
-const editAnswerInputThree = document.getElementById('editAnswer3'); 
+const editQuestionInput = document.getElementById("editQuestion");
+const editAnswerInputOne = document.getElementById("editAnswer1");
+const editAnswerInputTwo = document.getElementById("editAnswer2");
+const editAnswerInputThree = document.getElementById("editAnswer3");
 
-const editAnswerRadioOne = document.getElementById('editCorrect1');
-const editAnswerRadioTwo = document.getElementById('editCorrect2');
-const editAnswerRadioThree = document.getElementById('editCorrect3');
+const editAnswerRadioOne = document.getElementById("editCorrect1");
+const editAnswerRadioTwo = document.getElementById("editCorrect2");
+const editAnswerRadioThree = document.getElementById("editCorrect3");
 
-const editConfirmBtn = document.getElementById('edit-confirm-btn');
+const editConfirmBtn = document.getElementById("edit-confirm-btn");
 
 // ===== Edit Inputs =====
 
-
 const confirmDelBtn = document.querySelector(".confirmDel");
 const confirmNoBtn = document.querySelector(".confirmNo");
+const confirmNotiBtn = document.querySelector('.notiConfirm');
 
 //  ===== Buttons =====
 
-
+let notificationContainer = document.querySelector('.notification-container')
+let notificationText = document.getElementById('notifyH2');
 
 let deleteIndex = null;
 let editIndex = null;
 
+function notifyAdded(message) {
+  
+
+  notificationText.textContent = `${message}`
+
+  notificationContainer.classList.remove('hidden');
+  notificationContainer.classList.add('active');
+
+};
+
+
+function notiConfirm() {
+
+  notificationContainer.classList.add('hidden');
+  notificationContainer.classList.remove('active');
+
+  notificationText.textContent = '';
+};
+
+
 questionList.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-btn")) {
-    const index = Number( e.target.dataset.index);
+    const index = Number(e.target.dataset.index);
 
     confirmPopup.classList.remove("hidden");
     confirmPopup.classList.add("active");
 
     deleteIndex = index;
-  };
+  }
   if (e.target.classList.contains("edit-btn")) {
-
-    const index = Number( e.target.dataset.index);
+    const index = Number(e.target.dataset.index);
     editIndex = index;
 
     editQuestionInput.value = Questions[index].question;
@@ -42,30 +62,27 @@ questionList.addEventListener("click", (e) => {
     editAnswerInputTwo.value = Questions[index].answers[1].text;
     editAnswerInputThree.value = Questions[index].answers[2].text;
 
-    document.querySelectorAll('input[name="editCorrect"]').forEach((input , i) => {
-      if (Questions[index].answers[i].correct){
-        input.checked = true;
-      } else {
-        input.checked = false;
-      }
-    });
+    document
+      .querySelectorAll('input[name="editCorrect"]')
+      .forEach((input, i) => {
+        if (Questions[index].answers[i].correct) {
+          input.checked = true;
+        } else {
+          input.checked = false;
+        }
+      });
 
     hideContainers();
 
     editContainer.classList.remove("hidden");
     editContainer.classList.add("active");
-  };
+  }
 });
 
-editContainer.addEventListener('click' , (e) => {
-
-
-
-    if(e.target.classList.contains('edit-confirm')){
-      
-
+editContainer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("edit-confirm")) {
     if (!editQuestionInput.value) {
-      alert("Please fill in the question field.");
+      notifyAdded("Please fill the question field!");
       return;
     }
     if (
@@ -73,7 +90,7 @@ editContainer.addEventListener('click' , (e) => {
       !editAnswerInputTwo.value ||
       !editAnswerInputThree.value
     ) {
-      alert("Please fill in all answer fields.");
+      notifyAdded("Please fill all answer fields!");
       return;
     }
 
@@ -82,11 +99,11 @@ editContainer.addEventListener('click' , (e) => {
       !editAnswerRadioTwo.checked &&
       !editAnswerRadioThree.checked
     ) {
-      alert("Please select the correct answer.");
+      notifyAdded("Please select the correct answer!");
       return;
     }
-      
-     const newEditedQuestion = {
+
+    const newEditedQuestion = {
       question: editQuestionInput.value,
       answers: [
         {
@@ -103,10 +120,9 @@ editContainer.addEventListener('click' , (e) => {
         },
       ],
     };
-    
+
     Questions[editIndex] = newEditedQuestion;
     saveQuestions();
-
 
     editQuestionInput.value = "";
     editAnswerInputOne.value = "";
@@ -119,20 +135,14 @@ editContainer.addEventListener('click' , (e) => {
 
     hideContainers();
 
-    questionCheck.classList.remove('hidden');
-    questionCheck.classList.add('active');
+    questionCheck.classList.remove("hidden");
+    questionCheck.classList.add("active");
 
     renderQuestionList();
 
-    alert('Question Edited!')
-        
-    };
+    notifyAdded("Question Edited!");
+  }
 });
-
-
-
-
-
 
 confirmDelBtn.addEventListener("click", () => {
   Questions.splice(deleteIndex, 1);
@@ -148,3 +158,5 @@ confirmNoBtn.addEventListener("click", () => {
   confirmPopup.classList.remove("active");
   confirmPopup.classList.add("hidden");
 });
+
+confirmNotiBtn.addEventListener('click', notiConfirm);

@@ -1,8 +1,10 @@
 let Questions = [];
 
+saveQuestions();
+
 const savedQuestions = localStorage.getItem("questions");
 
-if(savedQuestions) {
+if(savedQuestions.length = 0) {
     Questions = JSON.parse(savedQuestions);
 
 } else {

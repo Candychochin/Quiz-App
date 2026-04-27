@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   createSubmitBtn.addEventListener("click", () => {
     if (!createQuestionInput.value) {
-      alert("Please fill in the question field.");
+      notifyAdded("Please fill in the question field!");
       return;
     }
     if (
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       !createAnswerInputTwo.value ||
       !createAnswerInputThree.value
     ) {
-      alert("Please fill in all answer fields.");
+      notifyAdded("Please fill in all answer fields!");
       return;
     }
 
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       !createCorrectRadioTwo.checked &&
       !createCorrectRadioThree.checked
     ) {
-      alert("Please select the correct answer.");
+      notifyAdded("Please select the correct answer!");
       return;
     }
 
@@ -66,6 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderQuestionList();
 
-    alert("Question created successfully!");
+    notifyAdded("Question created successfully!");
   });
 });
