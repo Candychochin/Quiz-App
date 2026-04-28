@@ -9,10 +9,12 @@ const editContainer = document.querySelector(".edit-container");
 // under is btn and upper is container
 
 const startBtn = document.getElementById("start-btn");
+const endTestBtn = document.getElementById('endTest-btn')
 const selectBtn = document.getElementById("select-btn");
 const restartBtn = document.getElementById("restart-btn");
 const createBtn = document.getElementById("create-btn");
 const submitBtn = document.getElementById("submit-btn");
+
 
 const navStartBtn = document.getElementById("nav-start-btn");
 const navCreateBtn = document.getElementById("nav-create-btn");
@@ -107,7 +109,7 @@ const button = {
       resultContainer.classList.add("active");
 
       updateProgress();
-      quiz.renderResult();
+      quiz.renderResult('Quiz Finished!');
     }
   },
 
@@ -120,6 +122,15 @@ const button = {
     quizContainer.classList.add("active");
 
     quiz.render();
+  },
+  endTestBtn:() => {
+    hideContainers();
+    quiz.renderResult('Quiz Ended!')
+    resultContainer.classList.remove('hidden');
+    resultContainer.classList.add('active');
+
+    score = 0;
+    currentQuestionIndex = 0;
   },
 };
 
@@ -136,3 +147,5 @@ navCheckBtn.addEventListener("click", button.editQuestionBtn);
 selectBtn.addEventListener("click", button.selectBtn);
 
 restartBtn.addEventListener("click", button.restartBtn);
+
+endTestBtn.addEventListener('click' , button.endTestBtn)

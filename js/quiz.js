@@ -40,8 +40,8 @@ const quiz = {
     updateProgress();
   },
 
-  renderResult: () => {
-    resultCongrats.textContent = "Quiz Finished!";
+  renderResult: (endText) => {
+    resultCongrats.textContent = `${endText}`;
     resultScore.textContent = `Your Score Is ${scores}!`;
 
 

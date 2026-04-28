@@ -122,7 +122,7 @@ button {
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  transition:all 0.2s;
 }
 
 button:hover,
@@ -237,6 +237,10 @@ input[type="text"]:focus {
   height: 100%;
   margin: 5px 5px 5px 10px;
   text-align: start;
+}
+
+#endTest-btn{
+  margin: 10px auto;
 }
 
 /* ----- Upper Part is for Answer Container ------ */
@@ -359,12 +363,14 @@ input[type="text"]:focus {
 }
 
 .delete-btn,
-.confirmDel {
+.confirmDel,
+#endTest-btn {
   background: var(--danger);
 }
 
 .delete-btn:hover,
-.confirmDel:hover {
+.confirmDel:hover ,
+#endTest-btn:hover {
   background: #ef4444cc;
 }
 
