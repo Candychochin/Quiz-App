@@ -14,6 +14,9 @@ const selectBtn = document.getElementById("select-btn");
 const restartBtn = document.getElementById("restart-btn");
 const createBtn = document.getElementById("create-btn");
 const submitBtn = document.getElementById("submit-btn");
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
 
 
 const navStartBtn = document.getElementById("nav-start-btn");
@@ -132,6 +135,41 @@ const button = {
     score = 0;
     currentQuestionIndex = 0;
   },
+  prevBtn: () => {
+    nextBtn.classList.remove('disabled');
+    currentQuestionIndex--;
+    
+    console.log(currentQuestionIndex)
+    console.log(scores)
+
+    if(currentQuestionIndex <= 0){
+      currentQuestionIndex = 0;
+    }
+    if(currentQuestionIndex === 0){
+      prevBtn.classList.add('disabled');
+    }
+
+    
+    quiz.render();
+
+    
+  },
+  nextBtn: () => {
+    prevBtn.classList.remove('disabled');
+
+    currentQuestionIndex++;
+    quiz.render();
+    
+    console.log(currentQuestionIndex)
+    console.log(scores)
+
+
+
+    if (currentQuestionIndex >= Questions.length -1){
+      nextBtn.classList.add('disabled');
+    }
+
+  },
 };
 
 startBtn.addEventListener("click", button.startBtn);
@@ -148,4 +186,7 @@ selectBtn.addEventListener("click", button.selectBtn);
 
 restartBtn.addEventListener("click", button.restartBtn);
 
-endTestBtn.addEventListener('click' , button.endTestBtn)
+endTestBtn.addEventListener('click' , button.endTestBtn);
+prevBtn.addEventListener('click' , button.prevBtn);
+
+nextBtn.addEventListener('click' , button.nextBtn);

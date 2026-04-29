@@ -243,7 +243,31 @@ input[type="text"]:focus {
   margin: 10px auto;
 }
 
-/* ----- Upper Part is for Answer Container ------ */
+.quiz-action-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+
+  margin: 10px auto;
+}
+
+#next-btn ,
+#prev-btn {
+  height: 50px;
+  width: 55px;
+
+}
+
+.disabled{
+  background-color: hsl(0, 0%, 30%);
+  color: hsl(0, 0%, 40%);
+  box-shadow: inset 1px 1px 3px black;
+  pointer-events: none;
+}
+
+/* ----- Upper Part is for Answer and Quiz Container ------ */
 
 .result-container {
   gap: 20px;

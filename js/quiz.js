@@ -18,10 +18,17 @@ let scores = 0;
 let shuffledQuestions = [];
 
 const quiz = {
+
   render: () => {
+
+
     let current = shuffledQuestions[currentQuestionIndex];
 
-    let shuffledAnswers = [...current.answers];
+    let shuffledAnswers = [...current.answers]; // shuffled questions' answers
+   
+    // console.log(shuffledAnswers)
+    // console.log(JSON.stringify(shuffledAnswers));
+
     shuffle(shuffledAnswers);
 
     quiz.currentAnswers = shuffledAnswers;
