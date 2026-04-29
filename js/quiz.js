@@ -11,21 +11,20 @@ let resultAdvice = document.getElementById("result-advice");
 
 let progressBar = document.getElementById("progress-bar");
 
-
 let currentQuestionIndex = 0;
 let scores = 0;
 
 let shuffledQuestions = [];
 
+let selectedAnswer = [];
+let correctAnswer = [];
+
 const quiz = {
-
   render: () => {
-
-
     let current = shuffledQuestions[currentQuestionIndex];
 
     let shuffledAnswers = [...current.answers]; // shuffled questions' answers
-   
+
     // console.log(shuffledAnswers)
     // console.log(JSON.stringify(shuffledAnswers));
 
@@ -37,7 +36,14 @@ const quiz = {
 
     answerOptionOne.querySelector("span").textContent = shuffledAnswers[0].text;
     answerOptionTwo.querySelector("span").textContent = shuffledAnswers[1].text;
-    answerOptionThree.querySelector("span").textContent = shuffledAnswers[2].text;
+    answerOptionThree.querySelector("span").textContent =
+      shuffledAnswers[2].text;
+
+    quiz.currentAnswers.forEach((answer) => {
+      if (answer.correct) {
+        checkDuplicate(answer.text, correctAnswer);
+      }
+    });
 
     progressNum.textContent = `${currentQuestionIndex + 1} / ${Questions.length}`;
 
@@ -45,28 +51,30 @@ const quiz = {
       input.checked = false;
     });
     updateProgress();
+    console.log(correctAnswer, selectedAnswer,scores);
   },
 
   renderResult: (endText) => {
     resultCongrats.textContent = `${endText}`;
     resultScore.textContent = `Your Score Is ${scores}!`;
 
-
     if (scores <= Questions.length * (40 / 100)) {
-         resultAdvice.textContent = "Better Luck Next Time!";
-    } else if ( scores <= Questions.length * (60 / 100) ) {
-        resultAdvice.textContent = "Not Bad!";
-    } else if ( scores <= Questions.length * (80 / 100) ) {
-        resultAdvice.textContent = "Great Job!";
-    } else if ( scores <= Questions.length * (100 / 100) ) {
-        resultAdvice.textContent = "Excellent!";
-    } 
-
-    
-
-
+      resultAdvice.textContent = "Better Luck Next Time!";
+    } else if (scores <= Questions.length * (60 / 100)) {
+      resultAdvice.textContent = "Not Bad!";
+    } else if (scores <= Questions.length * (80 / 100)) {
+      resultAdvice.textContent = "Great Job!";
+    } else if (scores <= Questions.length * (100 / 100)) {
+      resultAdvice.textContent = "Excellent!";
+    }
   },
 };
+
+function checkDuplicate(sample, array) {
+  if (!array.includes(sample)) {
+    array.push(sample);
+  }
+}
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -83,5 +91,12 @@ function updateProgress() {
   let percentage = (progress / total) * 100;
 
   progressBar.style.width = percentage + "%";
+}
 
+function checkAnswer() {
+  selectedAnswer.forEach((ans) => {
+    if (correctAnswer.includes(ans)) {
+      scores++;
+    }
+  });
 }
