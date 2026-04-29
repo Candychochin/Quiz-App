@@ -257,7 +257,7 @@ input[type="text"]:focus {
 #prev-btn {
   height: 50px;
   width: 55px;
-
+  text-align: center;
 }
 
 .disabled{
