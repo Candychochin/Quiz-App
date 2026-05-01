@@ -401,34 +401,40 @@ input[type="text"]:focus {
 /* ------ upper part is for edit container ------ */
 
 .delete-popup-container ,
-.notification-container {
+.notification-container ,
+.endTest-popup-container {
   position: fixed;
   inset: 0;
   background: var(--shadow);
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   z-index: 10;
 }
 
 .delete-popup-container.hidden ,
-.notification-container.hidden {
+.notification-container.hidden ,
+.endTest-popup-container.hidden{
   opacity: 0;
   pointer-events: none;
 }
 
 .delete-popup-container.active ,
-.notification-container.active {
+.notification-container.active ,
+.endTest-popup-container.active{
   opacity: 1;
   pointer-events: auto;
 }
 
 .delete-popup ,
-.noti-popup {
+.noti-popup ,
+.endTest-popup{
   text-align: center;
 }
 
-.delete-popup span {
+.delete-popup span ,
+.endTest-popup span {
   color: var(--danger);
 }
 

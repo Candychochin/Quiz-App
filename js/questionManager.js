@@ -11,37 +11,33 @@ const editConfirmBtn = document.getElementById("edit-confirm-btn");
 
 // ===== Edit Inputs =====
 
-const confirmDelBtn = document.querySelector(".confirmDel");
-const confirmNoBtn = document.querySelector(".confirmNo");
-const confirmNotiBtn = document.querySelector('.notiConfirm');
+const confirmDelBtn = document.getElementById("deleteYes");
+const confirmNoBtn = document.getElementById("deleteNo");
+const confirmNotiBtn = document.querySelector(".notiConfirm");
+
+
 
 //  ===== Buttons =====
 
-let notificationContainer = document.querySelector('.notification-container')
-let notificationText = document.getElementById('notifyH2');
+let notificationContainer = document.querySelector(".notification-container");
+let notificationText = document.getElementById("notifyH2");
 
 let deleteIndex = null;
 let editIndex = null;
 
 function notifyAdded(message) {
-  
+  notificationText.textContent = `${message}`;
 
-  notificationText.textContent = `${message}`
-
-  notificationContainer.classList.remove('hidden');
-  notificationContainer.classList.add('active');
-
-};
-
+  notificationContainer.classList.remove("hidden");
+  notificationContainer.classList.add("active");
+}
 
 function notiConfirm() {
+  notificationContainer.classList.add("hidden");
+  notificationContainer.classList.remove("active");
 
-  notificationContainer.classList.add('hidden');
-  notificationContainer.classList.remove('active');
-
-  notificationText.textContent = '';
-};
-
+  notificationText.textContent = "";
+}
 
 questionList.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-btn")) {
@@ -159,4 +155,4 @@ confirmNoBtn.addEventListener("click", () => {
   confirmPopup.classList.add("hidden");
 });
 
-confirmNotiBtn.addEventListener('click', notiConfirm);
+confirmNotiBtn.addEventListener("click", notiConfirm);

@@ -16,8 +16,11 @@ let scores = 0;
 
 let shuffledQuestions = [];
 
+// let selectedAnswer = new Array(Questions.length).fill(null);
 let selectedAnswer = [];
-let correctAnswer = [];
+
+console.log(selectedAnswer)
+
 
 const quiz = {
   render: () => {
@@ -39,11 +42,7 @@ const quiz = {
     answerOptionThree.querySelector("span").textContent =
       shuffledAnswers[2].text;
 
-    quiz.currentAnswers.forEach((answer) => {
-      if (answer.correct) {
-        checkDuplicate(answer.text, correctAnswer);
-      }
-    });
+    
 
     progressNum.textContent = `${currentQuestionIndex + 1} / ${Questions.length}`;
 
@@ -51,10 +50,11 @@ const quiz = {
       input.checked = false;
     });
     updateProgress();
-    console.log(correctAnswer, selectedAnswer,scores);
+    // console.log(correctAnswer, selectedAnswer, scores);
   },
 
   renderResult: (endText) => {
+    
     resultCongrats.textContent = `${endText}`;
     resultScore.textContent = `Your Score Is ${scores}!`;
 
@@ -70,11 +70,6 @@ const quiz = {
   },
 };
 
-function checkDuplicate(sample, array) {
-  if (!array.includes(sample)) {
-    array.push(sample);
-  }
-}
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -94,9 +89,6 @@ function updateProgress() {
 }
 
 function checkAnswer() {
-  selectedAnswer.forEach((ans) => {
-    if (correctAnswer.includes(ans)) {
-      scores++;
-    }
-  });
+  scores = selectedAnswer.filter(ans => ans === true).length
 }
+

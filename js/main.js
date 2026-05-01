@@ -3,7 +3,8 @@ const quizContainer = document.querySelector(".quiz-container");
 const resultContainer = document.querySelector(".result-container");
 const createContainer = document.querySelector(".create-container");
 const questionCheck = document.querySelector(".question-look-container");
-const confirmPopup = document.querySelector(".delete-popup-container");
+const confirmPopup = document.getElementById("deletePopup");
+const endTestPopup = document.getElementById('endTestPopup');
 const editContainer = document.querySelector(".edit-container");
 
 // under is btn and upper is container
@@ -14,8 +15,12 @@ const selectBtn = document.getElementById("select-btn");
 const restartBtn = document.getElementById("restart-btn");
 const createBtn = document.getElementById("create-btn");
 const submitBtn = document.getElementById("submit-btn");
+
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
+
+const endTestYes = document.getElementById('endTestYes');
+const endTestNo = document.getElementById('endTestNo')
 
 
 
@@ -50,6 +55,7 @@ function hideContainers() {
 
 //  NOTICE YOU NEED TO ADD CHECK LENGTH OF THE SELECTED ANSWER AND MAKE DON'T END WHEN SKIP TO 10 AND SELECT ANSWER
 
+
 const button = {
   startBtn: () => {
     activeBtnStyle();
@@ -65,8 +71,8 @@ const button = {
 
     currentQuestionIndex = 0;
     scores = 0;
-    selectedAnswer = [];
-    correctAnswer = [];
+    selectedAnswer = new Array(Questions.length).fill(null);
+    
 
     quiz.render();
   },
@@ -101,11 +107,11 @@ const button = {
       ...document.querySelectorAll('input[name="answer"]'),
     ].indexOf(selected);
 
-    let currentQuestion = Questions[currentQuestionIndex];
+    // let currentQuestion = Questions[currentQuestionIndex];
 
-    if (quiz.currentAnswers[selectedIndex].text) {
-      checkDuplicate(quiz.currentAnswers[selectedIndex].text , selectedAnswer);
-    }
+    selectedAnswer[currentQuestionIndex] = quiz.currentAnswers[selectedIndex].correct;
+
+    
 
     currentQuestionIndex++;
     
@@ -113,10 +119,15 @@ const button = {
       prevBtn.classList.remove('disabled');
     }
 
+console.log(selectedAnswer)
     
 
     if (currentQuestionIndex < Questions.length) {
       quiz.render();
+      
+    } else if (selectedAnswer.includes(null)) {
+      notifyAdded("You Haven't Answered All Questions Yet!");
+      return;
     } else {
       hideContainers();
       checkAnswer();
@@ -125,14 +136,21 @@ const button = {
 
       updateProgress();
       quiz.renderResult('Quiz Finished!');
+      
     }
+    
   },
 
   restartBtn: () => {
     score = 0;
     currentQuestionIndex = 0;
-    selectedAnswer = [];
-    correctAnswer = [];
+    selectedAnswer = new Array(Questions.length).fill(null);
+
+    if(nextBtn.classList.contains('disabled') || prevBtn.classList.contains('active')){
+      nextBtn.classList.remove('disabled');
+      prevBtn.classList.remove('disabled')
+    }
+
 
     shuffledQuestions = [...Questions];
     shuffle(shuffledQuestions);
@@ -144,21 +162,10 @@ const button = {
     quiz.render();
   },
   endTestBtn:() => {
-    score = 0;
-    currentQuestionIndex = 0;
-    selectedAnswer = [];
-    correctAnswer = [];
-    shuffledQuestions = [...Questions];
-    shuffle(shuffledQuestions);
 
-    checkAnswer();
-    hideContainers();
-    quiz.renderResult('Quiz Ended!')
-    resultContainer.classList.remove('hidden');
-    resultContainer.classList.add('active');
-
-    score = 0;
-    currentQuestionIndex = 0;
+    endTestPopup.classList.remove('hidden');
+    endTestPopup.classList.add('active');
+    
   },
   prevBtn: () => {
     nextBtn.classList.remove('disabled');
@@ -182,6 +189,10 @@ const button = {
   nextBtn: () => {
     prevBtn.classList.remove('disabled');
 
+    // if (selectedAnswer[currentQuestionIndex] === null) {
+    //   notifyAdded("Please answer this question first!");
+    //   return;
+    // }
     currentQuestionIndex++;
     quiz.render();
     
@@ -195,6 +206,33 @@ const button = {
     }
 
   },
+  endTestYes: () => {
+
+    
+
+
+
+    checkAnswer();
+    hideContainers();
+    endTestPopup.classList.add('hidden');
+    endTestPopup.classList.remove('active');
+
+    quiz.renderResult('Quiz Ended!')
+    resultContainer.classList.remove('hidden');
+    resultContainer.classList.add('active');
+
+    score = 0;
+    currentQuestionIndex = 0;
+    selectedAnswer = new Array(Questions.length).fill(null);
+    shuffledQuestions = [...Questions];
+    shuffle(shuffledQuestions);
+  },
+  endTestNo: () => {
+
+    endTestPopup.classList.add('hidden');
+    endTestPopup.classList.remove('active');
+
+  }
 };
 
 startBtn.addEventListener("click", button.startBtn);
@@ -212,6 +250,10 @@ selectBtn.addEventListener("click", button.selectBtn);
 restartBtn.addEventListener("click", button.restartBtn);
 
 endTestBtn.addEventListener('click' , button.endTestBtn);
-prevBtn.addEventListener('click' , button.prevBtn);
+endTestNo.addEventListener('click' , button.endTestNo);
+endTestYes.addEventListener('click' , button.endTestYes)
 
+
+prevBtn.addEventListener('click' , button.prevBtn);
 nextBtn.addEventListener('click' , button.nextBtn);
+

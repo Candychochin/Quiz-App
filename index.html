@@ -22,15 +22,26 @@
 
     <div class="page-wrapper">
 
-      <div class="delete-popup-container hidden">
+      <div class="delete-popup-container hidden" id="deletePopup">
         <section class="delete-popup">
           <h2>
             Are You Sure? <br />
             Want To <span>Delete</span> This Question?
           </h2>
 
-          <button class="confirmNo">No</button>
-          <button class="confirmDel">Yes</button>
+          <button class="confirmNo" id="deleteNo">No</button>
+          <button class="confirmDel" id="deleteYes">Yes</button>
+        </section>
+      </div>
+      <div class="endTest-popup-container hidden" id="endTestPopup">
+        <section class="endTest-popup">
+          <h2>
+            Are You Sure? <br />
+            Want To <span>End</span> The Test?
+          </h2>
+
+          <button class="confirmNo" id="endTestNo">No</button>
+          <button class="confirmDel" id="endTestYes">Yes</button>
         </section>
       </div>
 
