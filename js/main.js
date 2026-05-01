@@ -4,25 +4,23 @@ const resultContainer = document.querySelector(".result-container");
 const createContainer = document.querySelector(".create-container");
 const questionCheck = document.querySelector(".question-look-container");
 const confirmPopup = document.getElementById("deletePopup");
-const endTestPopup = document.getElementById('endTestPopup');
+const endTestPopup = document.getElementById("endTestPopup");
 const editContainer = document.querySelector(".edit-container");
 
 // under is btn and upper is container
 
 const startBtn = document.getElementById("start-btn");
-const endTestBtn = document.getElementById('endTest-btn')
+const endTestBtn = document.getElementById("endTest-btn");
 const selectBtn = document.getElementById("select-btn");
 const restartBtn = document.getElementById("restart-btn");
 const createBtn = document.getElementById("create-btn");
 const submitBtn = document.getElementById("submit-btn");
 
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
 
-const endTestYes = document.getElementById('endTestYes');
-const endTestNo = document.getElementById('endTestNo')
-
-
+const endTestYes = document.getElementById("endTestYes");
+const endTestNo = document.getElementById("endTestNo");
 
 const navStartBtn = document.getElementById("nav-start-btn");
 const navCreateBtn = document.getElementById("nav-create-btn");
@@ -38,11 +36,9 @@ const containers = [
 ];
 
 function activeBtnStyle() {
-  navStartBtn.classList.remove('btn-active');
-  navCheckBtn.classList.remove('btn-active')
-  navCreateBtn.classList.remove('btn-active')
-
-  
+  navStartBtn.classList.remove("btn-active");
+  navCheckBtn.classList.remove("btn-active");
+  navCreateBtn.classList.remove("btn-active");
 }
 
 function hideContainers() {
@@ -52,16 +48,13 @@ function hideContainers() {
   });
 }
 
-
 //  NOTICE YOU NEED TO ADD CHECK LENGTH OF THE SELECTED ANSWER AND MAKE DON'T END WHEN SKIP TO 10 AND SELECT ANSWER
-
 
 const button = {
   startBtn: () => {
     activeBtnStyle();
-    navStartBtn.classList.add('btn-active');
+    navStartBtn.classList.add("btn-active");
     hideContainers();
-
 
     quizContainer.classList.remove("hidden");
     quizContainer.classList.add("active");
@@ -72,14 +65,14 @@ const button = {
     currentQuestionIndex = 0;
     scores = 0;
     selectedAnswer = new Array(Questions.length).fill(null);
-    
+    resetShuffledAnswers();
 
     quiz.render();
   },
 
   createBtn: () => {
     activeBtnStyle();
-    navCreateBtn.classList.add('btn-active')
+    navCreateBtn.classList.add("btn-active");
 
     hideContainers();
 
@@ -89,7 +82,7 @@ const button = {
 
   editQuestionBtn: () => {
     activeBtnStyle();
-    navCheckBtn.classList.add('btn-active')
+    navCheckBtn.classList.add("btn-active");
     hideContainers();
 
     renderQuestionList();
@@ -109,22 +102,20 @@ const button = {
 
     // let currentQuestion = Questions[currentQuestionIndex];
 
-    selectedAnswer[currentQuestionIndex] = quiz.currentAnswers[selectedIndex].correct;
+    // selectedAnswer[currentQuestionIndex] = quiz.currentAnswers[selectedIndex].correct; // This store true/false value
 
-    
+    selectedAnswer[currentQuestionIndex] = selectedIndex; // This store the selected Index
 
     currentQuestionIndex++;
-    
-    if(currentQuestionIndex !== 0){
-      prevBtn.classList.remove('disabled');
+
+    if (currentQuestionIndex !== 0) {
+      prevBtn.classList.remove("disabled");
     }
 
-console.log(selectedAnswer)
-    
+    console.log(selectedAnswer);
 
     if (currentQuestionIndex < Questions.length) {
       quiz.render();
-      
     } else if (selectedAnswer.includes(null)) {
       notifyAdded("You Haven't Answered All Questions Yet!");
       return;
@@ -135,10 +126,8 @@ console.log(selectedAnswer)
       resultContainer.classList.add("active");
 
       updateProgress();
-      quiz.renderResult('Quiz Finished!');
-      
+      quiz.renderResult("Quiz Finished!");
     }
-    
   },
 
   restartBtn: () => {
@@ -146,11 +135,13 @@ console.log(selectedAnswer)
     currentQuestionIndex = 0;
     selectedAnswer = new Array(Questions.length).fill(null);
 
-    if(nextBtn.classList.contains('disabled') || prevBtn.classList.contains('active')){
-      nextBtn.classList.remove('disabled');
-      prevBtn.classList.remove('disabled')
+    if (
+      nextBtn.classList.contains("disabled") ||
+      prevBtn.classList.contains("active")
+    ) {
+      nextBtn.classList.remove("disabled");
+      prevBtn.classList.remove("disabled");
     }
-
 
     shuffledQuestions = [...Questions];
     shuffle(shuffledQuestions);
@@ -161,33 +152,28 @@ console.log(selectedAnswer)
 
     quiz.render();
   },
-  endTestBtn:() => {
-
-    endTestPopup.classList.remove('hidden');
-    endTestPopup.classList.add('active');
-    
+  endTestBtn: () => {
+    endTestPopup.classList.remove("hidden");
+    endTestPopup.classList.add("active");
   },
   prevBtn: () => {
-    nextBtn.classList.remove('disabled');
+    nextBtn.classList.remove("disabled");
     currentQuestionIndex--;
-    
-    console.log(currentQuestionIndex)
-    console.log(scores)
 
-    if(currentQuestionIndex <= 0){
+    console.log(currentQuestionIndex);
+    console.log(scores);
+
+    if (currentQuestionIndex <= 0) {
       currentQuestionIndex = 0;
     }
-    if(currentQuestionIndex === 0){
-      prevBtn.classList.add('disabled');
+    if (currentQuestionIndex === 0) {
+      prevBtn.classList.add("disabled");
     }
 
-    
     quiz.render();
-
-    
   },
   nextBtn: () => {
-    prevBtn.classList.remove('disabled');
+    prevBtn.classList.remove("disabled");
 
     // if (selectedAnswer[currentQuestionIndex] === null) {
     //   notifyAdded("Please answer this question first!");
@@ -195,31 +181,24 @@ console.log(selectedAnswer)
     // }
     currentQuestionIndex++;
     quiz.render();
-    
+
     // console.log(currentQuestionIndex)
     // console.log(scores)
 
-
-
-    if (currentQuestionIndex >= Questions.length -1){
-      nextBtn.classList.add('disabled');
+    if (currentQuestionIndex >= Questions.length - 1) {
+      nextBtn.classList.add("disabled");
     }
-
   },
   endTestYes: () => {
-
-    
-
-
-
     checkAnswer();
+    resetShuffledAnswers();
     hideContainers();
-    endTestPopup.classList.add('hidden');
-    endTestPopup.classList.remove('active');
+    endTestPopup.classList.add("hidden");
+    endTestPopup.classList.remove("active");
 
-    quiz.renderResult('Quiz Ended!')
-    resultContainer.classList.remove('hidden');
-    resultContainer.classList.add('active');
+    quiz.renderResult("Quiz Ended!");
+    resultContainer.classList.remove("hidden");
+    resultContainer.classList.add("active");
 
     score = 0;
     currentQuestionIndex = 0;
@@ -228,11 +207,9 @@ console.log(selectedAnswer)
     shuffle(shuffledQuestions);
   },
   endTestNo: () => {
-
-    endTestPopup.classList.add('hidden');
-    endTestPopup.classList.remove('active');
-
-  }
+    endTestPopup.classList.add("hidden");
+    endTestPopup.classList.remove("active");
+  },
 };
 
 startBtn.addEventListener("click", button.startBtn);
@@ -249,11 +226,9 @@ selectBtn.addEventListener("click", button.selectBtn);
 
 restartBtn.addEventListener("click", button.restartBtn);
 
-endTestBtn.addEventListener('click' , button.endTestBtn);
-endTestNo.addEventListener('click' , button.endTestNo);
-endTestYes.addEventListener('click' , button.endTestYes)
+endTestBtn.addEventListener("click", button.endTestBtn);
+endTestNo.addEventListener("click", button.endTestNo);
+endTestYes.addEventListener("click", button.endTestYes);
 
-
-prevBtn.addEventListener('click' , button.prevBtn);
-nextBtn.addEventListener('click' , button.nextBtn);
-
+prevBtn.addEventListener("click", button.prevBtn);
+nextBtn.addEventListener("click", button.nextBtn);

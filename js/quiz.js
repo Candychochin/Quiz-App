@@ -19,19 +19,25 @@ let shuffledQuestions = [];
 // let selectedAnswer = new Array(Questions.length).fill(null);
 let selectedAnswer = [];
 
-console.log(selectedAnswer)
-
+console.log(selectedAnswer);
 
 const quiz = {
   render: () => {
     let current = shuffledQuestions[currentQuestionIndex];
 
-    let shuffledAnswers = [...current.answers]; // shuffled questions' answers
+    if (!current.shuffledAnswers) {
+      current.shuffledAnswers = [...current.answers];
+      shuffle(current.shuffledAnswers);
+    }
+
+    let shuffledAnswers = current.shuffledAnswers;
+    // let shuffledAnswers = [...current.answers]; // shuffled questions' answers
 
     // console.log(shuffledAnswers)
     // console.log(JSON.stringify(shuffledAnswers));
 
-    shuffle(shuffledAnswers);
+    // shuffle(shuffledAnswers);
+    console.log(shuffledAnswers);
 
     quiz.currentAnswers = shuffledAnswers;
 
@@ -42,19 +48,23 @@ const quiz = {
     answerOptionThree.querySelector("span").textContent =
       shuffledAnswers[2].text;
 
-    
-
     progressNum.textContent = `${currentQuestionIndex + 1} / ${Questions.length}`;
 
     document.querySelectorAll('input[name="answer"]').forEach((input) => {
       input.checked = false;
     });
+    const savedIndex = selectedAnswer[currentQuestionIndex];
+    if (savedIndex !== null && savedIndex !== undefined) {
+      const inputs = document.querySelectorAll('input[name="answer"]');
+      inputs[savedIndex].checked = true;
+    }
+
     updateProgress();
+
     // console.log(correctAnswer, selectedAnswer, scores);
   },
 
   renderResult: (endText) => {
-    
     resultCongrats.textContent = `${endText}`;
     resultScore.textContent = `Your Score Is ${scores}!`;
 
@@ -69,7 +79,6 @@ const quiz = {
     }
   },
 };
-
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -89,6 +98,22 @@ function updateProgress() {
 }
 
 function checkAnswer() {
-  scores = selectedAnswer.filter(ans => ans === true).length
+  scores = 0;
+
+  selectedAnswer.forEach((selectedIndex, i) => {
+    if (selectedIndex === null) return;
+
+    const question = shuffledQuestions[i];
+    const answers = question.shuffledAnswers;
+
+    if (answers[selectedIndex].correct) {
+      scores++;
+    }
+  });
 }
 
+function resetShuffledAnswers() {
+  shuffledQuestions.forEach((q) => {
+    delete q.shuffledAnswers;
+  });
+}
