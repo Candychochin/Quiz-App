@@ -19,7 +19,7 @@ let shuffledQuestions = [];
 // let selectedAnswer = new Array(Questions.length).fill(null);
 let selectedAnswer = [];
 
-console.log(selectedAnswer);
+// console.log(selectedAnswer);
 
 const quiz = {
   render: () => {
@@ -37,7 +37,7 @@ const quiz = {
     // console.log(JSON.stringify(shuffledAnswers));
 
     // shuffle(shuffledAnswers);
-    console.log(shuffledAnswers);
+    // console.log(shuffledAnswers);
 
     quiz.currentAnswers = shuffledAnswers;
 

@@ -112,7 +112,7 @@ const button = {
       prevBtn.classList.remove("disabled");
     }
 
-    console.log(selectedAnswer);
+    // console.log(selectedAnswer);
 
     if (currentQuestionIndex < Questions.length) {
       quiz.render();
@@ -160,8 +160,8 @@ const button = {
     nextBtn.classList.remove("disabled");
     currentQuestionIndex--;
 
-    console.log(currentQuestionIndex);
-    console.log(scores);
+    // console.log(currentQuestionIndex);
+    // console.log(scores);
 
     if (currentQuestionIndex <= 0) {
       currentQuestionIndex = 0;
